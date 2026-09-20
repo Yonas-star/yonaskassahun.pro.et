@@ -32,6 +32,11 @@ import {
   Sparkles,
   Send,
   Clock,
+  Instagram,
+  Linkedin,
+  Github,
+  Facebook,
+  Mail,
 } from "lucide-react";
 
 export default function Home() {
@@ -166,6 +171,45 @@ export default function Home() {
       displayUrl: "In Building",
       color: "from-amber-500/25 via-rose-600/15 to-purple-500/10",
       delay: 0.25,
+    },
+  ];
+
+  // Reusable Social Links Data (Instagram, LinkedIn, GitHub, Facebook, Email)
+  const socialLinks = [
+    {
+      name: "GitHub",
+      handle: "@Yonas-star",
+      url: "https://github.com/Yonas-star",
+      icon: Github,
+      color: "hover:text-white hover:border-zinc-500",
+    },
+    {
+      name: "LinkedIn",
+      handle: "Yonas Kassahun",
+      url: "https://linkedin.com/in/yonas-kassahun",
+      icon: Linkedin,
+      color: "hover:text-blue-400 hover:border-blue-500/50",
+    },
+    {
+      name: "Instagram",
+      handle: "@yonas.kassahun",
+      url: "https://instagram.com/",
+      icon: Instagram,
+      color: "hover:text-pink-400 hover:border-pink-500/50",
+    },
+    {
+      name: "Facebook",
+      handle: "Yonas Kassahun",
+      url: "https://facebook.com/",
+      icon: Facebook,
+      color: "hover:text-blue-500 hover:border-blue-600/50",
+    },
+    {
+      name: "Email",
+      handle: "yonaskassahunyoka@gmail.com",
+      url: "mailto:yonaskassahunyoka@gmail.com",
+      icon: Mail,
+      color: "hover:text-emerald-400 hover:border-emerald-500/50",
     },
   ];
 
@@ -441,7 +485,7 @@ export default function Home() {
             </div>
           </section>
 
-          {/* Section 4: Contact & Footer */}
+          {/* Section 4: Contact & Social */}
           <section id="contact" className="py-16 sm:py-20 px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
@@ -462,13 +506,55 @@ export default function Home() {
                   Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
                 </p>
                 <a
-                  href="mailto:contact@yonas.dev"
+                  href="mailto:yonaskassahunyoka@gmail.com"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-zinc-950 font-semibold text-xs shadow-lg active:scale-95 mb-6"
                 >
                   <Send className="w-3.5 h-3.5" />
                   <span>Send a Message</span>
                 </a>
-                <div className="pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1">
+
+                {/* Social Links Section for Instagram, LinkedIn, GitHub, Facebook, Email */}
+                <div className="pt-6 border-t border-zinc-800/80 text-left">
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-bold flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                      SOCIAL CHANNELS
+                    </span>
+                    <span className="text-[10px] font-mono text-zinc-500">5 NETWORKS</span>
+                  </div>
+
+                  <div className="grid grid-cols-1 gap-2">
+                    {socialLinks.map((social) => {
+                      const SocialIcon = social.icon;
+                      return (
+                        <a
+                          key={social.name}
+                          href={social.url}
+                          target={social.name === "Email" ? undefined : "_blank"}
+                          rel={social.name === "Email" ? undefined : "noopener noreferrer"}
+                          className={`flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/70 border border-zinc-800/80 transition-all hover:bg-zinc-900 active:scale-95 ${social.color}`}
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center border border-zinc-800">
+                              <SocialIcon className="w-4 h-4 text-zinc-300" />
+                            </div>
+                            <div className="text-left">
+                              <p className="text-xs font-semibold text-white leading-tight">
+                                {social.name}
+                              </p>
+                              <p className="text-[10px] text-zinc-400 font-mono">
+                                {social.handle}
+                              </p>
+                            </div>
+                          </div>
+                          <ExternalLink className="w-3.5 h-3.5 text-zinc-500" />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1">
                   <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
                   <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
                 </div>
@@ -769,32 +855,72 @@ export default function Home() {
                       <span>04 // LET&apos;S BUILD TOGETHER</span>
                     </div>
 
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-4">
+                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
                       Have a vision in mind?
                     </h2>
 
-                    <p className="text-zinc-400 text-sm sm:text-base font-light max-w-lg mx-auto mb-8 leading-relaxed">
+                    <p className="text-zinc-400 text-sm sm:text-base font-light max-w-lg mx-auto mb-6 leading-relaxed">
                       Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
                     </p>
 
-                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
+                    <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-8">
                       <a
-                        href="mailto:contact@yonas.dev"
-                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-sm"
+                        href="mailto:yonaskassahunyoka@gmail.com"
+                        className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-xs sm:text-sm"
                       >
-                        <Send className="w-4 h-4" />
+                        <Send className="w-3.5 h-3.5" />
                         <span>Send a Message</span>
                       </a>
 
                       <button
                         onClick={() => handleNavigate(0)}
-                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all text-sm font-medium active:scale-95"
+                        className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all text-xs sm:text-sm font-medium active:scale-95"
                       >
                         Back to Start
                       </button>
                     </div>
 
-                    <div className="mt-10 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono">
+                    {/* Social Links Section: Instagram, LinkedIn, GitHub, Facebook, Email */}
+                    <div className="pt-6 border-t border-zinc-800/80 text-left">
+                      <div className="flex items-center justify-between mb-3 px-1">
+                        <div className="flex items-center gap-2">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                          <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 font-bold">
+                            SOCIAL CHANNELS & PROFILES
+                          </span>
+                        </div>
+                        <span className="text-[10px] font-mono text-zinc-500">5 NETWORKS</span>
+                      </div>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
+                        {socialLinks.map((social) => {
+                          const SocialIcon = social.icon;
+                          return (
+                            <motion.a
+                              key={social.name}
+                              href={social.url}
+                              target={social.name === "Email" ? undefined : "_blank"}
+                              rel={social.name === "Email" ? undefined : "noopener noreferrer"}
+                              whileHover={{ y: -3, scale: 1.03 }}
+                              whileTap={{ scale: 0.97 }}
+                              className={`flex flex-col items-center justify-center p-3 rounded-2xl bg-zinc-950/70 border border-zinc-800/90 transition-all duration-300 group shadow-lg ${social.color}`}
+                            >
+                              <div className="w-9 h-9 rounded-xl bg-zinc-900/90 flex items-center justify-center mb-1.5 border border-zinc-800 group-hover:border-zinc-600 transition-colors">
+                                <SocialIcon className="w-4 h-4 text-zinc-300 group-hover:scale-110 transition-transform" />
+                              </div>
+                              <span className="text-xs font-semibold text-white group-hover:text-amber-400 transition-colors">
+                                {social.name}
+                              </span>
+                              <span className="text-[9px] text-zinc-400 font-mono truncate max-w-[100px] mt-0.5">
+                                {social.name === "Email" ? "Direct Mail" : social.handle}
+                              </span>
+                            </motion.a>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="mt-6 pt-4 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono">
                       <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
                       <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
                     </div>

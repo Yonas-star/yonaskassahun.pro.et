@@ -8,8 +8,43 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Yonas Kassahun | Full-Stack Developer & AI Learner",
-  description: "Portfolio of Yonas Kassahun — Full-Stack Developer, AI Learner & Video Editor.",
+  title: "Yonas Kassahun | Full-Stack Developer, AI Learner & Video Editor",
+  description:
+    "Official portfolio of Yonas Kassahun — Full-Stack Developer, AI Learner, and Cinematic Video Editor. Specializing in high-performance web systems, intelligent multi-agent AI architectures, and dynamic video post-production.",
+  keywords: [
+    "Yonas Kassahun",
+    "Full-Stack Developer",
+    "AI Learner",
+    "Video Editor",
+    "Next.js",
+    "TypeScript",
+    "Python",
+    "PyTorch",
+    "AgarAI",
+    "AdwaSec",
+    "Software Engineer",
+    "Ethiopia",
+  ],
+  authors: [{ name: "Yonas Kassahun" }],
+  creator: "Yonas Kassahun",
+  openGraph: {
+    title: "Yonas Kassahun | Full-Stack Developer, AI Learner & Video Editor",
+    description:
+      "Official portfolio of Yonas Kassahun — Full-Stack Developer, AI Learner, and Cinematic Video Editor.",
+    url: "https://yonaskassahun.pro.et",
+    siteName: "Yonas Kassahun Portfolio",
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Yonas Kassahun | Full-Stack Developer, AI Learner & Video Editor",
+    description:
+      "Official portfolio of Yonas Kassahun — Full-Stack Developer, AI Learner, and Cinematic Video Editor.",
+  },
+  alternates: {
+    canonical: "https://yonaskassahun.pro.et",
+  },
 };
 
 export const viewport: Viewport = {
