@@ -6,16 +6,13 @@ import { Sparkles, CheckCircle2 } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section
-      id="about"
-      className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-12 flex flex-col justify-center relative z-20"
-    >
+    <div className="w-full max-w-6xl mx-auto px-4 sm:px-10 py-8 sm:py-12 flex flex-col justify-center relative z-20">
       {/* Section Sub-header */}
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -10 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: false, amount: 0.2 }}
+        viewport={{ once: true, amount: 0.05 }}
         className="flex items-center gap-3 mb-4"
       >
         <span className="w-8 h-[1px] bg-cyan-500/60" />
@@ -27,10 +24,10 @@ export default function AboutSection() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
         {/* Left Column: Soundless, Seamless Looping Video with Ultra-Thin Black Layer */}
         <motion.div
-          initial={{ opacity: 0, x: -60, scale: 0.94 }}
-          whileInView={{ opacity: 1, x: 0, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: false, amount: 0.3 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.05 }}
           className="lg:col-span-5 relative group"
         >
           {/* Ambient Rim Glow behind video container */}
@@ -45,6 +42,7 @@ export default function AboutSection() {
               loop
               muted
               playsInline
+              preload="auto"
               className="w-full h-full object-cover object-center pointer-events-none"
             />
 
@@ -55,10 +53,10 @@ export default function AboutSection() {
 
         {/* Right Column: About Narrative & Capabilities */}
         <motion.div
-          initial={{ opacity: 0, x: 60 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          viewport={{ once: false, amount: 0.3 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+          viewport={{ once: true, amount: 0.05 }}
           className="lg:col-span-7 flex flex-col justify-center"
         >
           <div className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400/90 mb-3">
@@ -103,10 +101,10 @@ export default function AboutSection() {
             ].map((col, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: col.delay }}
-                viewport={{ once: false, amount: 0.3 }}
+                viewport={{ once: true, amount: 0.05 }}
                 whileHover={{ y: -4, transition: { duration: 0.2 } }}
                 className="p-3.5 rounded-xl bg-zinc-900/60 border border-zinc-800/80 backdrop-blur-sm"
               >
@@ -136,6 +134,6 @@ export default function AboutSection() {
           </div>
         </motion.div>
       </div>
-    </section>
+    </div>
   );
 }

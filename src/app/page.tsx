@@ -150,7 +150,7 @@ export default function Home() {
       {/* 1. MOBILE VERTICAL SCROLL LAYOUT                             */}
       {/* ============================================================ */}
       {isMobile ? (
-        <main className="min-h-screen relative overflow-hidden bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,#18181b_0%,#09090b_55%,#030304_100%)] text-zinc-100 flex flex-col selection:bg-zinc-800 selection:text-white">
+        <main className="min-h-screen relative bg-[#09090b] bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,#18181b_0%,#09090b_55%,#030304_100%)] text-zinc-100 flex flex-col selection:bg-zinc-800 selection:text-white">
           {/* Top subtle ambient spotlight */}
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[280px] bg-gradient-to-b from-white/10 via-zinc-500/5 to-transparent blur-3xl pointer-events-none" />
 
@@ -160,7 +160,7 @@ export default function Home() {
           {/* Section 0: Hero */}
           <section
             id="hero"
-            className="min-h-screen flex flex-col items-center justify-center px-4 pt-20 pb-16 text-center relative z-10 overflow-hidden"
+            className="min-h-screen flex flex-col items-center justify-center px-4 pt-20 pb-16 text-center relative z-10"
           >
             {/* Luminous Blue and Yellow ambient circles */}
             <div
@@ -215,18 +215,18 @@ export default function Home() {
           </section>
 
           {/* Section 1: About */}
-          <section id="about" className="py-20 px-4 relative z-10 overflow-hidden">
+          <section id="about" className="py-16 sm:py-20 px-4 relative z-10">
             <AboutSection />
           </section>
 
           {/* Section 2: Skill */}
-          <section id="skill" className="py-20 px-4 relative z-10 overflow-hidden">
+          <section id="skill" className="py-16 sm:py-20 px-4 relative z-10">
             <div className="max-w-xl mx-auto w-full">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: false }}
+                viewport={{ once: true, amount: 0.05 }}
                 className="mb-8 text-center"
               >
                 <div className="flex items-center justify-center gap-2 mb-2">
@@ -249,7 +249,7 @@ export default function Home() {
                       initial={{ opacity: 0, y: 30 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: card.delay }}
-                      viewport={{ once: false }}
+                      viewport={{ once: true, amount: 0.05 }}
                       className="bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border border-zinc-800/80 shadow-xl"
                     >
                       <div className="w-10 h-10 rounded-xl bg-white text-zinc-950 flex items-center justify-center mb-3">
@@ -279,13 +279,13 @@ export default function Home() {
           </section>
 
           {/* Section 3: Work */}
-          <section id="work" className="py-20 px-4 relative z-10 overflow-hidden">
+          <section id="work" className="py-16 sm:py-20 px-4 relative z-10">
             <div className="max-w-xl mx-auto w-full">
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                viewport={{ once: false }}
+                viewport={{ once: true, amount: 0.05 }}
                 className="mb-8 text-center"
               >
                 <div className="flex items-center justify-center gap-2 mb-2">
@@ -306,7 +306,7 @@ export default function Home() {
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6, delay: item.delay }}
-                    viewport={{ once: false }}
+                    viewport={{ once: true, amount: 0.05 }}
                     className="bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border border-zinc-800/80 shadow-xl"
                   >
                     <div className="flex justify-between items-start mb-3">
@@ -338,12 +338,12 @@ export default function Home() {
           </section>
 
           {/* Section 4: Contact & Footer */}
-          <section id="contact" className="py-20 px-4 relative z-10 overflow-hidden">
+          <section id="contact" className="py-16 sm:py-20 px-4 relative z-10">
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.7 }}
-              viewport={{ once: false }}
+              viewport={{ once: true, amount: 0.05 }}
               className="max-w-xl mx-auto w-full"
             >
               <div className="rounded-2xl bg-zinc-900/60 backdrop-blur-2xl border border-zinc-800/80 p-6 shadow-2xl text-center">

@@ -62,43 +62,26 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
             <stop offset="100%" stopColor="#e11d48" stopOpacity="0.40" />
           </linearGradient>
 
-          {/* Frosted Glass Gaussian Blur Filters: 2px blur per user specification */}
-          <filter id="vertAtmosphereBlur" x="-30%" y="-10%" width="160%" height="120%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-          </filter>
-
-          <filter id="vertFrostBlur" x="-20%" y="-5%" width="140%" height="110%">
-            <feGaussianBlur stdDeviation="2" result="blur" />
-          </filter>
-
-          <filter id="vertLaserGlow" x="-30%" y="-10%" width="160%" height="120%">
-            <feGaussianBlur stdDeviation="2" result="glow" />
-            <feMerge>
-              <feMergeNode in="glow" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
         </defs>
 
-        {/* LAYER 1: Wide Ambient Glow Halo */}
+        {/* LAYER 1: Wide Ambient Glow Halo (Lightweight Vector Diffusion) */}
         <path
           d={verticalZigzagPath}
           stroke="url(#vertRoadAtmosphere)"
-          strokeWidth="74"
+          strokeWidth="68"
           strokeLinecap="round"
           strokeLinejoin="round"
-          filter="url(#vertAtmosphereBlur)"
+          strokeOpacity="0.35"
           style={{ vectorEffect: "non-scaling-stroke" }}
         />
 
         {/* LAYER 2: Wide Frosted Glass Road Bed */}
         <path
           d={verticalZigzagPath}
-          stroke="rgba(255, 255, 255, 0.04)"
-          strokeWidth="44"
+          stroke="rgba(255, 255, 255, 0.05)"
+          strokeWidth="46"
           strokeLinecap="round"
           strokeLinejoin="round"
-          filter="url(#vertFrostBlur)"
           style={{ vectorEffect: "non-scaling-stroke" }}
         />
 
@@ -106,21 +89,20 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
         <path
           d={verticalZigzagPath}
           stroke="url(#vertRoadColors)"
-          strokeWidth="38"
+          strokeWidth="40"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeOpacity="0.10"
+          strokeOpacity="0.16"
           style={{ vectorEffect: "non-scaling-stroke" }}
         />
 
         {/* LAYER 4: Glass Specular Edge Rails (Twin crystal boundaries) */}
         <path
           d={verticalZigzagPath}
-          stroke="rgba(255, 255, 255, 0.18)"
-          strokeWidth="40"
+          stroke="rgba(255, 255, 255, 0.22)"
+          strokeWidth="42"
           strokeLinecap="round"
           strokeLinejoin="round"
-          strokeDasharray="none"
           fill="none"
           style={{ vectorEffect: "non-scaling-stroke" }}
         />
@@ -128,8 +110,8 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
         {/* LAYER 5: Inner Glass Sheen */}
         <path
           d={verticalZigzagPath}
-          stroke="rgba(255, 255, 255, 0.08)"
-          strokeWidth="34"
+          stroke="rgba(255, 255, 255, 0.10)"
+          strokeWidth="36"
           strokeLinecap="round"
           strokeLinejoin="round"
           style={{ vectorEffect: "non-scaling-stroke" }}
@@ -138,7 +120,7 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
         {/* LAYER 6: Center Dashed Glass Lane Markings */}
         <path
           d={verticalZigzagPath}
-          stroke="rgba(255, 255, 255, 0.28)"
+          stroke="rgba(255, 255, 255, 0.35)"
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="14 18"
@@ -152,7 +134,6 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
           strokeWidth="8"
           strokeLinecap="round"
           strokeLinejoin="round"
-          filter="url(#vertLaserGlow)"
           style={{
             pathLength: progress,
             vectorEffect: "non-scaling-stroke",
