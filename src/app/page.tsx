@@ -8,6 +8,7 @@ import HeroStatue from "@/components/HeroStatue";
 import AboutSection from "@/components/AboutSection";
 import HorizontalRoad from "@/components/HorizontalRoad";
 import VerticalRoad from "@/components/VerticalRoad";
+import BigSkillIcon from "@/components/BigSkillIcon";
 import {
   ArrowRight,
   Code2,
@@ -22,6 +23,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [activeSkillIndex, setActiveSkillIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Detect mobile vs desktop viewports (< 768px = vertical scroll, >= 768px = horizontal scroll)
@@ -240,9 +242,17 @@ export default function Home() {
                 </h2>
               </motion.div>
 
+              {/* Big Skill Icon right at the road entrance from About */}
+              <BigSkillIcon
+                activeIndex={activeSkillIndex}
+                onSkillChange={setActiveSkillIndex}
+                className="mb-8"
+              />
+
               <div className="flex flex-col gap-4">
-                {skillCards.map((card) => {
+                {skillCards.map((card, idx) => {
                   const Icon = card.icon;
+                  const isActive = activeSkillIndex === idx;
                   return (
                     <motion.div
                       key={card.title}
@@ -250,13 +260,23 @@ export default function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.6, delay: card.delay }}
                       viewport={{ once: true, amount: 0.05 }}
-                      className="bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border border-zinc-800/80 shadow-xl"
+                      onClick={() => setActiveSkillIndex(idx)}
+                      className={`bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border transition-all duration-300 shadow-xl cursor-pointer ${
+                        isActive
+                          ? "border-amber-500/80 shadow-amber-500/10 ring-1 ring-amber-500/40"
+                          : "border-zinc-800/80 hover:border-zinc-700"
+                      }`}
                     >
                       <div className="w-10 h-10 rounded-xl bg-white text-zinc-950 flex items-center justify-center mb-3">
                         <Icon className="w-5 h-5" />
                       </div>
-                      <h3 className="text-lg font-bold text-white mb-1">
-                        {card.title}
+                      <h3 className="text-lg font-bold text-white mb-1 flex items-center justify-between">
+                        <span>{card.title}</span>
+                        {isActive && (
+                          <span className="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                            ACTIVE
+                          </span>
+                        )}
                       </h3>
                       <p className="text-xs text-zinc-400 font-light leading-relaxed mb-4">
                         {card.desc}
@@ -460,47 +480,70 @@ export default function Home() {
                 className="w-screen h-screen flex-shrink-0 flex items-center justify-center px-6 sm:px-12 relative z-10 overflow-hidden"
               >
                 <div className="max-w-5xl mx-auto w-full">
-                  <motion.div
-                    initial={{ opacity: 0, y: -25 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6 }}
-                    viewport={{ once: false, amount: 0.3 }}
-                    className="mb-8 text-center sm:text-left"
-                  >
-                    <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
-                      <span className="w-8 h-[1px] bg-yellow-500/60" />
-                      <span className="text-xs font-mono text-yellow-400 uppercase tracking-widest">
-                        02 // CAPABILITIES & CRAFT
-                      </span>
-                    </div>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-                      Specialized Skills
-                    </h2>
-                  </motion.div>
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4 mb-4 sm:mb-6">
+                    <motion.div
+                      initial={{ opacity: 0, y: -20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6 }}
+                      viewport={{ once: true, amount: 0.1 }}
+                      className="text-center md:text-left"
+                    >
+                      <div className="flex items-center justify-center md:justify-start gap-3 mb-1.5">
+                        <span className="w-8 h-[1px] bg-yellow-500/60" />
+                        <span className="text-xs font-mono text-yellow-400 uppercase tracking-widest">
+                          02 // CAPABILITIES & CRAFT
+                        </span>
+                      </div>
+                      <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white">
+                        Specialized Skills
+                      </h2>
+                      <p className="text-xs text-zinc-400 font-light mt-1 max-w-md">
+                        Connecting end-to-end full-stack architectures, intelligent AI models, and cinematic motion graphics along the road.
+                      </p>
+                    </motion.div>
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-                    {skillCards.map((card) => {
+                    {/* Big Skill Icon on the Road transition from About */}
+                    <BigSkillIcon
+                      activeIndex={activeSkillIndex}
+                      onSkillChange={setActiveSkillIndex}
+                      className="scale-90 md:scale-100"
+                    />
+                  </div>
+
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-5">
+                    {skillCards.map((card, idx) => {
                       const Icon = card.icon;
+                      const isActive = activeSkillIndex === idx;
                       return (
                         <motion.div
                           key={card.title}
-                          initial={{ opacity: 0, y: 40, scale: 0.94 }}
+                          initial={{ opacity: 0, y: 30, scale: 0.96 }}
                           whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                          transition={{ duration: 0.7, delay: card.delay, ease: [0.16, 1, 0.3, 1] }}
-                          viewport={{ once: false, amount: 0.3 }}
-                          whileHover={{ y: -8, scale: 1.02 }}
-                          className={`group bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-6 sm:p-7 border border-zinc-800/80 shadow-2xl transition-all duration-300 ${card.border}`}
+                          transition={{ duration: 0.6, delay: card.delay, ease: [0.16, 1, 0.3, 1] }}
+                          viewport={{ once: true, amount: 0.1 }}
+                          whileHover={{ y: -6, scale: 1.02 }}
+                          onClick={() => setActiveSkillIndex(idx)}
+                          className={`group bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 sm:p-6 border shadow-2xl transition-all duration-300 cursor-pointer ${
+                            isActive
+                              ? "border-amber-500/80 shadow-amber-500/10 ring-1 ring-amber-500/40"
+                              : `border-zinc-800/80 ${card.border}`
+                          }`}
                         >
-                          <div className="w-12 h-12 rounded-xl bg-white text-zinc-950 flex items-center justify-center mb-5 shadow-md group-hover:scale-110 transition-transform">
-                            <Icon className="w-6 h-6" />
+                          <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-white text-zinc-950 flex items-center justify-center mb-3 sm:mb-4 shadow-md group-hover:scale-110 transition-transform">
+                            <Icon className="w-5 h-5 sm:w-6 sm:h-6" />
                           </div>
-                          <h3 className="text-xl font-bold text-white mb-2">
-                            {card.title}
+                          <h3 className="text-lg sm:text-xl font-bold text-white mb-1 flex items-center justify-between">
+                            <span>{card.title}</span>
+                            {isActive && (
+                              <span className="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded-full border border-amber-500/20">
+                                ACTIVE
+                              </span>
+                            )}
                           </h3>
-                          <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+                          <p className="text-xs sm:text-sm text-zinc-400 font-light leading-relaxed mb-4">
                             {card.desc}
                           </p>
-                          <div className="flex flex-wrap gap-1.5 pt-4 border-t border-zinc-800/60 text-[10px] font-mono text-zinc-400">
+                          <div className="flex flex-wrap gap-1.5 pt-3 border-t border-zinc-800/60 text-[10px] font-mono text-zinc-400">
                             {card.tags.map((t) => (
                               <span
                                 key={t}

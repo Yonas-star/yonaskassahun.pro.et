@@ -140,7 +140,17 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
           }}
         />
 
-        {/* Note: Circle indicators are completely removed */}
+        {/* SECTION 2 ROAD MILESTONE: Lightweight Vector Glass Waypoint entering Section 2 from About */}
+        <g transform="translate(500, 410)">
+          {/* Ambient Amber Glow Halo */}
+          <circle r="30" fill="rgba(245, 158, 11, 0.20)" />
+          {/* Frosted Glass Outer Ring */}
+          <circle r="22" stroke="rgba(255, 255, 255, 0.40)" strokeWidth="2" fill="rgba(24, 24, 27, 0.85)" />
+          {/* Inner Golden Specular Ring */}
+          <circle r="14" stroke="rgba(245, 158, 11, 0.75)" strokeWidth="1.5" fill="none" strokeDasharray="3 2" />
+          {/* Center Luminous Core */}
+          <circle r="5" fill="#fbbf24" />
+        </g>
       </svg>
     </div>
   );

@@ -159,7 +159,17 @@ export default function HorizontalRoad({ progress }: HorizontalRoadProps) {
           }}
         />
 
-        {/* NOTE: Circle indicators are completely removed per user request */}
+        {/* SECTION 2 ROAD MILESTONE: Glass Portal Waypoint entering Section 2 from About */}
+        <g transform="translate(2250, 500)">
+          {/* Ambient Amber Glow Aura */}
+          <circle r="34" fill="rgba(245, 158, 11, 0.18)" filter="url(#roadLaserGlow)" />
+          {/* Frosted Glass Outer Ring */}
+          <circle r="24" stroke="rgba(255, 255, 255, 0.35)" strokeWidth="2.5" fill="rgba(24, 24, 27, 0.75)" />
+          {/* Inner Golden Specular Ring */}
+          <circle r="16" stroke="rgba(245, 158, 11, 0.7)" strokeWidth="1.5" fill="none" strokeDasharray="4 3" />
+          {/* Center Luminous Core */}
+          <circle r="6" fill="#fbbf24" />
+        </g>
       </svg>
     </div>
   );
