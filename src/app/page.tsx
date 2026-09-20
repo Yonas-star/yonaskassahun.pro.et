@@ -31,6 +31,7 @@ import {
   ExternalLink,
   Sparkles,
   Send,
+  Clock,
 } from "lucide-react";
 
 export default function Home() {
@@ -145,19 +146,25 @@ export default function Home() {
   // Reusable Work Projects Data
   const workProjects = [
     {
-      title: "Full-Stack Kinetic Cloud",
-      desc: "High-performance full-stack web application with real-time WebSocket state streaming, responsive frontend architecture, and fluid physics.",
-      tags: ["NEXT.JS", "TYPESCRIPT", "NODE.JS", "TAILWIND"],
-      badge: "FULL-STACK",
-      color: "from-blue-500/20 to-purple-500/10",
+      title: "AgarAI",
+      desc: "Digital AI employees engineered to streamline workflows, handle customer operations, and execute complex business tasks with intelligent multi-agent orchestration.",
+      tags: ["NEXT.JS", "DIGITAL EMPLOYEES", "AI AGENTS", "LLMS"],
+      badge: "DIGITAL AI EMPLOYEES",
+      status: "LIVE",
+      link: "https://agarai.pro.et",
+      displayUrl: "agarai.pro.et",
+      color: "from-cyan-500/25 via-blue-600/15 to-purple-500/10",
       delay: 0.1,
     },
     {
-      title: "Autonomous AI Agent Suite",
-      desc: "Multi-agent cognitive orchestration pipeline integrating LLM reasoning chains, streaming telemetry, and dynamic data visualization.",
-      tags: ["PYTHON", "PYTORCH", "LLM AGENTS", "FASTAPI"],
-      badge: "AI LEARNING",
-      color: "from-yellow-500/20 to-purple-500/10",
+      title: "AdwaSec",
+      desc: "AI cyber security analyst and automated report generator designed to detect vulnerabilities, analyze threat vectors, and generate comprehensive security audit documentation.",
+      tags: ["CYBERSECURITY", "AI ANALYST", "AUDIT REPORTS", "THREAT INTEL"],
+      badge: "IN BUILDING",
+      status: "IN BUILDING",
+      link: null,
+      displayUrl: "In Building",
+      color: "from-amber-500/25 via-rose-600/15 to-purple-500/10",
       delay: 0.25,
     },
   ];
@@ -351,39 +358,85 @@ export default function Home() {
               </motion.div>
 
               <div className="flex flex-col gap-4">
-                {workProjects.map((item) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: item.delay }}
-                    viewport={{ once: true, amount: 0.05 }}
-                    className="bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border border-zinc-800/80 shadow-xl"
-                  >
-                    <div className="flex justify-between items-start mb-3">
-                      <span className="text-[10px] font-mono text-purple-400 uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 px-2 py-0.5 rounded-full">
-                        {item.badge}
-                      </span>
-                      <ExternalLink className="w-3.5 h-3.5 text-zinc-400" />
-                    </div>
-                    <h3 className="text-xl font-bold text-white mb-1.5">
-                      {item.title}
-                    </h3>
-                    <p className="text-xs text-zinc-400 font-light leading-relaxed mb-4">
-                      {item.desc}
-                    </p>
-                    <div className="flex gap-1.5 text-[10px] font-mono text-zinc-400">
-                      {item.tags.map((tag) => (
+                {workProjects.map((item) => {
+                  const isLink = !!item.link;
+                  return (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, y: 30 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: item.delay }}
+                      viewport={{ once: true, amount: 0.05 }}
+                      className="group relative bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-5 border border-zinc-800/80 shadow-xl overflow-hidden hover:border-zinc-700 transition-all"
+                    >
+                      <div
+                        className={`absolute -inset-1 bg-gradient-to-br ${item.color} rounded-2xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity -z-10`}
+                      />
+                      <div className="flex justify-between items-start mb-3">
                         <span
-                          key={tag}
-                          className="px-2 py-0.5 rounded bg-zinc-800/80 border border-zinc-700/50"
+                          className={`text-[10px] font-mono uppercase tracking-wider px-2.5 py-0.5 rounded-full flex items-center gap-1.5 ${
+                            item.status === "LIVE"
+                              ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/20"
+                              : "text-amber-400 bg-amber-500/10 border border-amber-500/20"
+                          }`}
                         >
-                          {tag}
+                          <span
+                            className={`w-1.5 h-1.5 rounded-full ${
+                              item.status === "LIVE" ? "bg-cyan-400 animate-pulse" : "bg-amber-400 animate-ping"
+                            }`}
+                          />
+                          {item.badge}
                         </span>
-                      ))}
-                    </div>
-                  </motion.div>
-                ))}
+
+                        {isLink ? (
+                          <a
+                            href={item.link!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1 text-[11px] font-mono text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 px-2.5 py-0.5 rounded-md transition-colors"
+                          >
+                            <span>{item.displayUrl}</span>
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        ) : (
+                          <span className="inline-flex items-center gap-1 text-[10px] font-mono text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
+                            <Clock className="w-3 h-3 text-amber-400" />
+                            <span>In Building</span>
+                          </span>
+                        )}
+                      </div>
+
+                      <h3 className="text-xl font-bold text-white mb-1.5 flex items-center justify-between">
+                        {isLink ? (
+                          <a
+                            href={item.link!}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="hover:text-cyan-400 transition-colors inline-flex items-center gap-1.5"
+                          >
+                            <span>{item.title}</span>
+                            <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-cyan-400 transition-colors" />
+                          </a>
+                        ) : (
+                          <span>{item.title}</span>
+                        )}
+                      </h3>
+                      <p className="text-xs text-zinc-400 font-light leading-relaxed mb-4">
+                        {item.desc}
+                      </p>
+                      <div className="flex flex-wrap gap-1.5 text-[10px] font-mono text-zinc-400">
+                        {item.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="px-2 py-0.5 rounded bg-zinc-800/80 border border-zinc-700/50"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </section>
@@ -609,43 +662,89 @@ export default function Home() {
                   </motion.div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {workProjects.map((item) => (
-                      <motion.div
-                        key={item.title}
-                        initial={{ opacity: 0, y: 40, scale: 0.94 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{ duration: 0.7, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
-                        viewport={{ once: false, amount: 0.3 }}
-                        whileHover={{ y: -6, scale: 1.02 }}
-                        className="group relative bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-7 border border-zinc-800/80 shadow-2xl overflow-hidden hover:border-zinc-700 transition-all"
-                      >
-                        <div
-                          className={`absolute -inset-1 bg-gradient-to-br ${item.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-75 transition-opacity -z-10`}
-                        />
-                        <div className="flex justify-between items-start mb-4">
-                          <span className="text-[11px] font-mono text-purple-400 uppercase tracking-wider bg-purple-500/10 border border-purple-500/20 px-2.5 py-1 rounded-full">
-                            {item.badge}
-                          </span>
-                          <ExternalLink className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
-                        </div>
-                        <h3 className="text-2xl font-bold text-white mb-2">
-                          {item.title}
-                        </h3>
-                        <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
-                          {item.desc}
-                        </p>
-                        <div className="flex gap-2 text-xs font-mono text-zinc-400">
-                          {item.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-2.5 py-1 rounded bg-zinc-800/80 border border-zinc-700/50"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    ))}
+                    {workProjects.map((item) => {
+                      const isLink = !!item.link;
+                      return (
+                        <motion.div
+                          key={item.title}
+                          initial={{ opacity: 0, y: 40, scale: 0.94 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          transition={{ duration: 0.7, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+                          viewport={{ once: false, amount: 0.3 }}
+                          whileHover={{ y: -6, scale: 1.02 }}
+                          className="group relative bg-zinc-900/60 backdrop-blur-2xl rounded-2xl p-7 border border-zinc-800/80 shadow-2xl overflow-hidden hover:border-zinc-700 transition-all flex flex-col justify-between"
+                        >
+                          <div
+                            className={`absolute -inset-1 bg-gradient-to-br ${item.color} rounded-2xl blur-xl opacity-40 group-hover:opacity-75 transition-opacity -z-10`}
+                          />
+                          <div>
+                            <div className="flex justify-between items-start mb-4">
+                              <span
+                                className={`text-[11px] font-mono uppercase tracking-wider px-2.5 py-1 rounded-full flex items-center gap-1.5 ${
+                                  item.status === "LIVE"
+                                    ? "text-cyan-400 bg-cyan-500/10 border border-cyan-500/20"
+                                    : "text-amber-400 bg-amber-500/10 border border-amber-500/20"
+                                }`}
+                              >
+                                <span
+                                  className={`w-1.5 h-1.5 rounded-full ${
+                                    item.status === "LIVE" ? "bg-cyan-400 animate-pulse" : "bg-amber-400 animate-ping"
+                                  }`}
+                                />
+                                {item.badge}
+                              </span>
+
+                              {isLink ? (
+                                <a
+                                  href={item.link!}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="inline-flex items-center gap-1.5 text-xs font-mono text-cyan-400 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/25 px-2.5 py-1 rounded-lg transition-all hover:scale-105"
+                                >
+                                  <span>{item.displayUrl}</span>
+                                  <ExternalLink className="w-3.5 h-3.5" />
+                                </a>
+                              ) : (
+                                <span className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-lg">
+                                  <Clock className="w-3.5 h-3.5 text-amber-400" />
+                                  <span>In Building</span>
+                                </span>
+                              )}
+                            </div>
+
+                            <h3 className="text-2xl font-bold text-white mb-2">
+                              {isLink ? (
+                                <a
+                                  href={item.link!}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="hover:text-cyan-400 transition-colors inline-flex items-center gap-2 group-hover:translate-x-0.5 transition-transform"
+                                >
+                                  <span>{item.title}</span>
+                                  <ExternalLink className="w-5 h-5 text-zinc-500 group-hover:text-cyan-400 transition-colors" />
+                                </a>
+                              ) : (
+                                <span>{item.title}</span>
+                              )}
+                            </h3>
+                            <p className="text-sm text-zinc-400 font-light leading-relaxed mb-6">
+                              {item.desc}
+                            </p>
+                          </div>
+
+                          <div className="flex flex-wrap gap-2 text-xs font-mono text-zinc-400 pt-4 border-t border-zinc-800/60">
+                            {item.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-2.5 py-1 rounded bg-zinc-800/80 border border-zinc-700/50"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        </motion.div>
+                      );
+                    })}
                   </div>
                 </div>
               </section>
