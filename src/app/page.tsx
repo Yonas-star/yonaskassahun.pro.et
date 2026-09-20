@@ -8,7 +8,6 @@ import HeroStatue from "@/components/HeroStatue";
 import AboutSection from "@/components/AboutSection";
 import HorizontalRoad from "@/components/HorizontalRoad";
 import VerticalRoad from "@/components/VerticalRoad";
-import HorizontalScrollHUD from "@/components/HorizontalScrollHUD";
 import {
   ArrowRight,
   Code2,
@@ -35,14 +34,11 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // 1. Desktop Horizontal Scrolling State
+  // 1. Desktop & Mobile Scroll Progress State
   const desktopContainerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress: desktopScrollProgress } = useScroll({
-    target: desktopContainerRef,
-    offset: ["start start", "end end"],
-  });
+  const { scrollYProgress } = useScroll();
 
-  const smoothProgress = useSpring(desktopScrollProgress, {
+  const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 85,
     damping: 24,
     restDelta: 0.001,
@@ -50,13 +46,8 @@ export default function Home() {
 
   const x = useTransform(smoothProgress, [0, 1], ["0%", "-80%"]);
 
-  // 2. Mobile Vertical Scrolling State
-  const { scrollYProgress: mobileScrollProgress } = useScroll();
-  const mobileSmoothProgress = useSpring(mobileScrollProgress, {
-    stiffness: 85,
-    damping: 24,
-    restDelta: 0.001,
-  });
+  // Mobile Vertical Scrolling State
+  const mobileSmoothProgress = smoothProgress;
 
   useEffect(() => {
     if (!isMobile) {
@@ -150,12 +141,10 @@ export default function Home() {
       )}
 
       {/* Navigation Bar with Support for Both Scrolling Modes */}
-      {!loading && (
-        <Navbar
-          onNavigate={handleNavigate}
-          activeIndex={isMobile ? undefined : activeIndex}
-        />
-      )}
+      <Navbar
+        onNavigate={handleNavigate}
+        activeIndex={isMobile ? undefined : activeIndex}
+      />
 
       {/* ============================================================ */}
       {/* 1. MOBILE VERTICAL SCROLL LAYOUT                             */}
@@ -198,13 +187,7 @@ export default function Home() {
 
             <HeroStatue />
 
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7 }}
-              viewport={{ once: false }}
-              className="max-w-xl mx-auto mt-2 px-2 z-20"
-            >
+            <div className="max-w-xl mx-auto mt-2 px-2 z-20">
               <h2 className="text-xl font-bold tracking-tight text-white mb-2">
                 I am a Developer, 3D Modeler & Video Editor
               </h2>
@@ -228,7 +211,7 @@ export default function Home() {
                   <span>Get In Touch</span>
                 </a>
               </div>
-            </motion.div>
+            </div>
           </section>
 
           {/* Section 1: About */}
@@ -410,7 +393,7 @@ export default function Home() {
               {/* SECTION 0: HERO */}
               <section
                 id="hero"
-                className="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-4 sm:px-8 text-center relative z-10 overflow-hidden"
+                className="w-screen h-screen flex-shrink-0 flex flex-col items-center justify-center px-4 sm:px-8 pt-14 pb-2 sm:pt-16 sm:pb-3 text-center relative z-10 overflow-hidden"
               >
                 <div
                   aria-hidden="true"
@@ -436,37 +419,31 @@ export default function Home() {
 
                 <HeroStatue />
 
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                  viewport={{ once: false }}
-                  className="max-w-2xl mx-auto mt-2 sm:mt-4 px-4 z-20"
-                >
-                  <h2 className="text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-white mb-2">
+                <div className="max-w-2xl mx-auto mt-0.5 sm:mt-1 px-4 z-20">
+                  <h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white mb-1">
                     I am a Developer, 3D Modeler & Video Editor
                   </h2>
-                  <p className="text-zinc-400 text-xs sm:text-sm md:text-base font-light leading-relaxed mb-6 max-w-xl mx-auto">
+                  <p className="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed mb-3 max-w-lg mx-auto">
                     Crafting immersive digital experiences, real-time 3D environments, and cinematic video editing with modern creative tools and code.
                   </p>
 
-                  <div className="flex flex-col sm:flex-row items-center gap-3 sm:gap-4 justify-center w-full max-w-md mx-auto">
+                  <div className="flex flex-row items-center gap-3 sm:gap-4 justify-center w-full max-w-md mx-auto">
                     <button
                       onClick={() => handleNavigate(3)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-sm"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-xs sm:text-sm"
                     >
                       <span>Explore Work</span>
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
                     <button
                       onClick={() => handleNavigate(4)}
-                      className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all text-sm font-medium shadow-sm active:scale-95"
+                      className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all text-xs sm:text-sm font-medium shadow-sm active:scale-95"
                     >
                       <span>Get In Touch</span>
                     </button>
                   </div>
-                </motion.div>
+                </div>
               </section>
 
               {/* SECTION 1: ABOUT */}
@@ -660,14 +637,6 @@ export default function Home() {
               </section>
             </motion.div>
           </div>
-
-          {/* Floating Interactive Horizontal Navigation HUD at Bottom (Desktop only) */}
-          {!loading && (
-            <HorizontalScrollHUD
-              progress={smoothProgress}
-              onNavigate={handleNavigate}
-            />
-          )}
         </div>
       )}
     </>

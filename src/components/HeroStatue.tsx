@@ -42,22 +42,22 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
   const smoothY = useSpring(mouseY, springConfig);
 
   // 3D rotation & parallax depth
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [8, -8]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-12, 12]);
+  const rotateX = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
+  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-10, 10]);
 
   // Deepest Layer (Icons behind the name)
-  const iconsTranslateX = useTransform(smoothX, [-0.5, 0.5], [-16, 16]);
-  const iconsTranslateY = useTransform(smoothY, [-0.5, 0.5], [-12, 12]);
+  const iconsTranslateX = useTransform(smoothX, [-0.5, 0.5], [-14, 14]);
+  const iconsTranslateY = useTransform(smoothY, [-0.5, 0.5], [-10, 10]);
 
   // Midground Layer (Name behind statue)
-  const bgTextTranslateX = useTransform(smoothX, [-0.5, 0.5], [-10, 10]);
-  const bgTextTranslateY = useTransform(smoothY, [-0.5, 0.5], [-6, 6]);
+  const bgTextTranslateX = useTransform(smoothX, [-0.5, 0.5], [-8, 8]);
+  const bgTextTranslateY = useTransform(smoothY, [-0.5, 0.5], [-5, 5]);
 
   // Foreground Layer (Statue)
-  const statueTranslateX = useTransform(smoothX, [-0.5, 0.5], [8, -8]);
-  const statueTranslateY = useTransform(smoothY, [-0.5, 0.5], [6, -6]);
+  const statueTranslateX = useTransform(smoothX, [-0.5, 0.5], [6, -6]);
+  const statueTranslateY = useTransform(smoothY, [-0.5, 0.5], [5, -5]);
 
-  // Idle gentle wave animation for mobile devices (when no mouse hover)
+  // Idle gentle wave animation
   useEffect(() => {
     let animId: number;
     let start = performance.now();
@@ -65,8 +65,8 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
     const idleMotion = (now: number) => {
       if (mouseX.get() === 0 && mouseY.get() === 0) {
         const elapsed = (now - start) * 0.0015;
-        const idleX = Math.sin(elapsed) * 0.12;
-        const idleY = Math.cos(elapsed * 0.8) * 0.08;
+        const idleX = Math.sin(elapsed) * 0.1;
+        const idleY = Math.cos(elapsed * 0.8) * 0.06;
         smoothX.set(idleX);
         smoothY.set(idleY);
       }
@@ -101,33 +101,33 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
     mouseY.set(0);
   };
 
-  // Curated constellation with responsive coordinate scaling
+  // Tech constellation cleanly framed around the statue without encroaching on navbar
   const techConstellation = [
     // Left Zone (Programming & 3D Languages)
-    { Icon: TypeScriptIcon, x: -38, y: -38, dur: 7, delay: 0 },
-    { Icon: ReactIcon, x: -24, y: -48, dur: 8.5, delay: 1.2 },
-    { Icon: PythonIcon, x: -40, y: -20, dur: 6.5, delay: 0.8 },
-    { Icon: JavaScriptIcon, x: -28, y: -26, dur: 9, delay: 2.0 },
-    { Icon: CPPIcon, x: -42, y: 0, dur: 7.5, delay: 1.5 },
-    { Icon: RustIcon, x: -30, y: 12, dur: 8, delay: 0.5 },
-    { Icon: GolangIcon, x: -38, y: 26, dur: 9.5, delay: 2.2 },
-    { Icon: NodeJSIcon, x: -24, y: 32, dur: 7, delay: 1.8 },
-    { Icon: HTML5Icon, x: -16, y: -42, dur: 8, delay: 2.5 },
+    { Icon: TypeScriptIcon, x: -38, y: -24, dur: 7, delay: 0 },
+    { Icon: ReactIcon, x: -26, y: -34, dur: 8.5, delay: 1.2 },
+    { Icon: PythonIcon, x: -40, y: -10, dur: 6.5, delay: 0.8 },
+    { Icon: JavaScriptIcon, x: -28, y: -14, dur: 9, delay: 2.0 },
+    { Icon: CPPIcon, x: -40, y: 6, dur: 7.5, delay: 1.5 },
+    { Icon: RustIcon, x: -30, y: 18, dur: 8, delay: 0.5 },
+    { Icon: GolangIcon, x: -38, y: 30, dur: 9.5, delay: 2.2 },
+    { Icon: NodeJSIcon, x: -24, y: 28, dur: 7, delay: 1.8 },
+    { Icon: HTML5Icon, x: -18, y: -32, dur: 8, delay: 2.5 },
 
-    // Top Arch
-    { Icon: ThreeJSIcon, x: -6, y: -50, dur: 7.2, delay: 0.3 },
-    { Icon: SwiftIcon, x: 7, y: -50, dur: 8.2, delay: 1.7 },
-    { Icon: CSS3Icon, x: 17, y: -44, dur: 6.8, delay: 2.1 },
+    // Top Arch (comfortably below navbar)
+    { Icon: ThreeJSIcon, x: -8, y: -38, dur: 7.2, delay: 0.3 },
+    { Icon: SwiftIcon, x: 8, y: -38, dur: 8.2, delay: 1.7 },
+    { Icon: CSS3Icon, x: 18, y: -32, dur: 6.8, delay: 2.1 },
 
     // Right Zone (AI & Video/Creative Tools)
-    { Icon: GeminiIcon, x: 26, y: -46, dur: 7.8, delay: 0.9 },
-    { Icon: OpenAIIcon, x: 39, y: -38, dur: 8.8, delay: 1.4 },
-    { Icon: ClaudeIcon, x: 30, y: -24, dur: 6.9, delay: 2.4 },
-    { Icon: BlenderIcon, x: 42, y: -14, dur: 9.2, delay: 0.6 },
-    { Icon: PremiereIcon, x: 33, y: 4, dur: 7.4, delay: 1.1 },
-    { Icon: AfterEffectsIcon, x: 41, y: 20, dur: 8.4, delay: 1.9 },
-    { Icon: PyTorchIcon, x: 25, y: 32, dur: 7.1, delay: 0.4 },
-    { Icon: DaVinciResolveIcon, x: 37, y: 36, dur: 9.0, delay: 2.7 },
+    { Icon: GeminiIcon, x: 28, y: -34, dur: 7.8, delay: 0.9 },
+    { Icon: OpenAIIcon, x: 38, y: -24, dur: 8.8, delay: 1.4 },
+    { Icon: ClaudeIcon, x: 30, y: -14, dur: 6.9, delay: 2.4 },
+    { Icon: BlenderIcon, x: 40, y: -4, dur: 9.2, delay: 0.6 },
+    { Icon: PremiereIcon, x: 32, y: 10, dur: 7.4, delay: 1.1 },
+    { Icon: AfterEffectsIcon, x: 40, y: 22, dur: 8.4, delay: 1.9 },
+    { Icon: PyTorchIcon, x: 26, y: 28, dur: 7.1, delay: 0.4 },
+    { Icon: DaVinciResolveIcon, x: 36, y: 32, dur: 9.0, delay: 2.7 },
   ];
 
   return (
@@ -136,7 +136,7 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
       onMouseMove={handleMouseMove}
       onTouchMove={handleTouchMove}
       onMouseLeave={handleMouseLeave}
-      className={`relative w-full max-w-6xl mx-auto min-h-[460px] xs:min-h-[520px] sm:min-h-[640px] md:min-h-[740px] flex items-center justify-center perspective-[1400px] select-none ${className}`}
+      className={`relative w-full max-w-5xl mx-auto h-[clamp(260px,42vh,440px)] flex items-center justify-center perspective-[1200px] select-none ${className}`}
     >
       {/* 3D Container with Parallax Tilt */}
       <motion.div
@@ -156,7 +156,7 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
             y: iconsTranslateY,
             transform: "translateZ(-80px)",
           }}
-          className="absolute inset-0 flex items-center justify-center pointer-events-none z-0 -translate-y-12 xs:-translate-y-14 sm:-translate-y-2 md:translate-y-0 transition-transform"
+          className="absolute inset-0 flex items-center justify-center pointer-events-none z-0"
         >
           {techConstellation.map((item, idx) => {
             const Icon = item.Icon;
@@ -164,9 +164,9 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
               <motion.div
                 key={idx}
                 animate={{
-                  y: [0, -14, 0, 14, 0],
-                  x: [0, 8, 0, -8, 0],
-                  rotate: [-4, 4, -4],
+                  y: [0, -10, 0, 10, 0],
+                  x: [0, 6, 0, -6, 0],
+                  rotate: [-3, 3, -3],
                 }}
                 transition={{
                   duration: item.dur,
@@ -180,9 +180,9 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
                   top: `calc(50% + ${item.y}%)`,
                   transform: "translate(-50%, -50%)",
                 }}
-                className="p-1.5 sm:p-2 md:p-2.5 rounded-xl sm:rounded-2xl bg-zinc-900/60 backdrop-blur-md border border-white/10 shadow-xl shadow-black/50 opacity-60 sm:opacity-75 hover:opacity-100 transition-opacity scale-85 xs:scale-90 sm:scale-100"
+                className="p-1 sm:p-1.5 md:p-2 rounded-xl bg-zinc-900/60 backdrop-blur-md border border-white/10 shadow-lg shadow-black/50 opacity-60 sm:opacity-75 hover:opacity-100 transition-opacity scale-75 sm:scale-90 md:scale-100"
               >
-                <Icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />
+                <Icon className="w-3.5 h-3.5 sm:w-4 sm:h-4 md:w-5 md:h-5" />
               </motion.div>
             );
           })}
@@ -190,7 +190,6 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
 
         {/* ========================================================================= */}
         {/* 2. MIDGROUND LAYER: Massive Typography BEHIND STATUE                       */}
-        {/* Shifted more upper on mobile with increased line gap across all devices   */}
         {/* ========================================================================= */}
         <motion.div
           style={{
@@ -198,12 +197,12 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
             y: bgTextTranslateY,
             transform: "translateZ(-20px)",
           }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none z-10 overflow-visible px-2 sm:px-4 -translate-y-14 xs:-translate-y-16 sm:-translate-y-4 md:translate-y-0 transition-transform"
+          className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none z-10 overflow-visible px-4 -translate-y-2 sm:-translate-y-4"
         >
-          <div className="flex flex-col items-center justify-center font-black tracking-tighter uppercase w-full gap-5 xs:gap-7 sm:gap-10 md:gap-14 lg:gap-16">
-            {/* YONAS (Upper position - visible above and crowning the statue head) */}
+          <div className="flex flex-col items-center justify-center font-black tracking-tighter uppercase w-full gap-3 sm:gap-5 md:gap-7">
+            {/* YONAS */}
             <span
-              className="text-[clamp(3.5rem,14vw,16rem)] font-black tracking-tighter bg-gradient-to-b from-white/35 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)] leading-none"
+              className="text-[clamp(3rem,10vh+2vw,10.5rem)] font-black tracking-tighter bg-gradient-to-b from-white/35 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)] leading-none"
               style={{
                 WebkitTextStroke: "1px rgba(255, 255, 255, 0.22)",
               }}
@@ -211,9 +210,9 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
               YONAS
             </span>
 
-            {/* KASSAHUN (Spaced with increased line gap to frame chest & pedestal) */}
+            {/* KASSAHUN */}
             <span
-              className="text-[clamp(2.8rem,11.5vw,14.5rem)] font-black tracking-tighter bg-gradient-to-b from-white/30 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_15px_35px_rgba(0,0,0,0.8)] leading-none"
+              className="text-[clamp(2.4rem,8vh+1.8vw,9rem)] font-black tracking-tighter bg-gradient-to-b from-white/30 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)] leading-none"
               style={{
                 WebkitTextStroke: "1px rgba(255, 255, 255, 0.18)",
               }}
@@ -225,7 +224,6 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
 
         {/* ========================================================================= */}
         {/* 3. FOREGROUND LAYER: Responsive 3D Character Bust Statue                   */}
-        {/* Anchored slightly lower on mobile to reveal YONAS completely              */}
         {/* ========================================================================= */}
         <motion.div
           style={{
@@ -233,15 +231,15 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
             y: statueTranslateY,
             transform: "translateZ(30px)",
           }}
-          className="relative z-20 w-[240px] xs:w-[280px] sm:w-[380px] md:w-[460px] lg:w-[500px] h-[360px] xs:h-[420px] sm:h-[540px] md:h-[640px] lg:h-[680px] flex items-center justify-center pointer-events-none translate-y-6 xs:translate-y-8 sm:translate-y-2 md:translate-y-0 transition-transform"
+          className="relative z-20 h-full aspect-[500/680] flex items-center justify-center pointer-events-none"
         >
           <Image
             src="/statue.png"
             alt="Yonas Kassahun - 3D Character Study Statue"
             fill
             priority
-            sizes="(max-width: 480px) 260px, (max-width: 768px) 380px, 500px"
-            className="object-contain drop-shadow-[0_25px_40px_rgba(0,0,0,0.85)]"
+            sizes="(max-height: 520px) 380px, 480px"
+            className="object-contain drop-shadow-[0_20px_35px_rgba(0,0,0,0.85)]"
           />
         </motion.div>
       </motion.div>
