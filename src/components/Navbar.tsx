@@ -6,32 +6,53 @@ import { User, Sparkles, Briefcase, Mail, Menu, X, ArrowUpRight } from "lucide-r
 
 interface NavbarProps {
   className?: string;
+  onNavigate?: (index: number) => void;
+  activeIndex?: number;
 }
 
-export default function Navbar({ className = "" }: NavbarProps) {
+export default function Navbar({
+  className = "",
+  onNavigate,
+  activeIndex,
+}: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
-  const [activeSection, setActiveSection] = useState("about");
+  const [internalActiveSection, setInternalActiveSection] = useState("about");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "About", href: "#about", icon: User },
-    { label: "Skill", href: "#skill", icon: Sparkles },
-    { label: "Work", href: "#work", icon: Briefcase },
-    { label: "Contact", href: "#contact", icon: Mail },
+    { label: "About", href: "#about", icon: User, index: 1 },
+    { label: "Skill", href: "#skill", icon: Sparkles, index: 2 },
+    { label: "Work", href: "#work", icon: Briefcase, index: 3 },
+    { label: "Contact", href: "#contact", icon: Mail, index: 4 },
   ];
+
+  const sectionIndexMap: Record<number, string> = {
+    0: "hero",
+    1: "about",
+    2: "skill",
+    3: "work",
+    4: "contact",
+  };
+
+  const currentActiveSection =
+    activeIndex !== undefined
+      ? sectionIndexMap[activeIndex] || "about"
+      : internalActiveSection;
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
 
-      const sections = ["about", "skill", "work", "contact"];
-      for (const section of sections) {
-        const el = document.getElementById(section);
-        if (el) {
-          const rect = el.getBoundingClientRect();
-          if (rect.top <= 200 && rect.bottom >= 200) {
-            setActiveSection(section);
-            break;
+      if (activeIndex === undefined) {
+        const sections = ["about", "skill", "work", "contact"];
+        for (const section of sections) {
+          const el = document.getElementById(section);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.left <= window.innerWidth / 2 && rect.right >= window.innerWidth / 2) {
+              setInternalActiveSection(section);
+              break;
+            }
           }
         }
       }
@@ -39,10 +60,14 @@ export default function Navbar({ className = "" }: NavbarProps) {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [activeIndex]);
 
-  const handleNavClick = (href: string) => {
+  const handleNavClick = (href: string, itemIndex?: number) => {
     setMobileMenuOpen(false);
+    if (onNavigate && itemIndex !== undefined) {
+      onNavigate(itemIndex);
+      return;
+    }
     const target = document.querySelector(href);
     if (target) {
       target.scrollIntoView({ behavior: "smooth" });
@@ -63,6 +88,10 @@ export default function Navbar({ className = "" }: NavbarProps) {
         {/* Brand / Logo */}
         <a
           href="#"
+          onClick={(e) => {
+            e.preventDefault();
+            handleNavClick("#hero", 0);
+          }}
           className="flex items-center gap-2.5 text-white font-bold tracking-tight hover:opacity-80 transition-opacity"
         >
           <div className="w-8 h-8 rounded-xl bg-white text-zinc-950 flex items-center justify-center font-mono text-sm font-black shadow-sm">
@@ -76,14 +105,14 @@ export default function Navbar({ className = "" }: NavbarProps) {
         {/* Desktop Nav Items */}
         <div className="hidden md:flex items-center gap-1 bg-zinc-950/60 p-1 rounded-xl border border-zinc-800/60">
           {navItems.map((item) => {
-            const isActive = activeSection === item.href.slice(1);
+            const isActive = currentActiveSection === item.href.slice(1);
             return (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick(item.href);
+                  handleNavClick(item.href, item.index);
                 }}
                 className={`relative px-4 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
                   isActive
@@ -110,7 +139,7 @@ export default function Navbar({ className = "" }: NavbarProps) {
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
-              handleNavClick("#contact");
+              handleNavClick("#contact", 4);
             }}
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-zinc-950 text-xs font-medium hover:bg-zinc-200 transition-all active:scale-95 shadow-sm"
           >
@@ -141,14 +170,14 @@ export default function Navbar({ className = "" }: NavbarProps) {
           >
             {navItems.map((item) => {
               const Icon = item.icon;
-              const isActive = activeSection === item.href.slice(1);
+              const isActive = currentActiveSection === item.href.slice(1);
               return (
                 <a
                   key={item.label}
                   href={item.href}
                   onClick={(e) => {
                     e.preventDefault();
-                    handleNavClick(item.href);
+                    handleNavClick(item.href, item.index);
                   }}
                   className={`flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-colors ${
                     isActive
@@ -166,7 +195,7 @@ export default function Navbar({ className = "" }: NavbarProps) {
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
-                  handleNavClick("#contact");
+                  handleNavClick("#contact", 4);
                 }}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white text-zinc-950 text-sm font-medium shadow-md active:scale-95"
               >
