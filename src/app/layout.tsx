@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Yonas Kassahun | YOKA 3D Portfolio",
-  description: "Creative Developer & 3D Interactive Portfolio",
+  title: "Yonas Kassahun | Full-Stack Developer & AI Learner",
+  description: "Portfolio of Yonas Kassahun — Full-Stack Developer, AI Learner & Video Editor.",
 };
 
 export const viewport: Viewport = {

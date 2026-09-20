@@ -11,7 +11,7 @@ import VerticalRoad from "@/components/VerticalRoad";
 import {
   ArrowRight,
   Code2,
-  Layers,
+  Brain,
   Video,
   ExternalLink,
   Sparkles,
@@ -82,18 +82,18 @@ export default function Home() {
       icon: Code2,
       color: "text-blue-400",
       border: "hover:border-blue-500/50",
-      title: "Development",
-      desc: "TypeScript, Next.js 14, React, Python, full-stack architectures, high-performance web applications and state management.",
-      tags: ["TYPESCRIPT", "NEXT.JS", "REACT", "PYTHON"],
+      title: "Full-Stack Dev",
+      desc: "TypeScript, Next.js 14, React, Node.js, Python, PostgreSQL, REST/GraphQL APIs, and high-performance cloud architectures.",
+      tags: ["TYPESCRIPT", "NEXT.JS", "NODE.JS", "PYTHON", "POSTGRESQL"],
       delay: 0.1,
     },
     {
-      icon: Layers,
+      icon: Brain,
       color: "text-yellow-400",
       border: "hover:border-yellow-500/50",
-      title: "3D Modeling",
-      desc: "Blender 3D, Three.js, React Three Fiber, GLSL Shaders, procedural materials, asset optimization, lighting & cinematic staging.",
-      tags: ["BLENDER", "THREE.JS", "GLSL", "R3F"],
+      title: "AI Learner",
+      desc: "Deep learning fundamentals, PyTorch, LLM orchestration, autonomous AI agents, prompt engineering, and machine learning pipelines.",
+      tags: ["PYTORCH", "LLMS", "AI AGENTS", "MACHINE LEARNING"],
       delay: 0.25,
     },
     {
@@ -110,19 +110,19 @@ export default function Home() {
   // Reusable Work Projects Data
   const workProjects = [
     {
-      title: "Kinetic 3D Wave Space",
-      desc: "Real-time interactive harmonic wave synthesis, fluid WebGL particle physics, and responsive camera navigation.",
-      tags: ["THREE.JS", "GSAP", "WEBGL"],
-      badge: "INTERACTIVE",
+      title: "Full-Stack Kinetic Cloud",
+      desc: "High-performance full-stack web application with real-time WebSocket state streaming, responsive frontend architecture, and fluid physics.",
+      tags: ["NEXT.JS", "TYPESCRIPT", "NODE.JS", "TAILWIND"],
+      badge: "FULL-STACK",
       color: "from-blue-500/20 to-purple-500/10",
       delay: 0.1,
     },
     {
-      title: "Interactive Model Showcase",
-      desc: "High-fidelity 3D asset viewer with dynamic studio lighting, customizable shaders, and seamless mobile touch rotation.",
-      tags: ["BLENDER", "THREE.JS", "SHADERS"],
-      badge: "3D MODELING",
-      color: "from-purple-500/20 to-yellow-500/10",
+      title: "Autonomous AI Agent Suite",
+      desc: "Multi-agent cognitive orchestration pipeline integrating LLM reasoning chains, streaming telemetry, and dynamic data visualization.",
+      tags: ["PYTHON", "PYTORCH", "LLM AGENTS", "FASTAPI"],
+      badge: "AI LEARNING",
+      color: "from-yellow-500/20 to-purple-500/10",
       delay: 0.25,
     },
   ];
@@ -189,10 +189,10 @@ export default function Home() {
 
             <div className="max-w-xl mx-auto mt-2 px-2 z-20">
               <h2 className="text-xl font-bold tracking-tight text-white mb-2">
-                I am a Developer, 3D Modeler & Video Editor
+                I am a Full-Stack Developer, AI Learner & Video Editor
               </h2>
               <p className="text-zinc-400 text-xs font-light leading-relaxed mb-6">
-                Crafting immersive digital experiences, real-time 3D environments, and cinematic video editing with modern creative tools and code.
+                Architecting scalable full-stack web applications, exploring intelligent AI models, and crafting dynamic cinematic video edits.
               </p>
 
               <div className="flex flex-col gap-3 w-full max-w-xs mx-auto">
@@ -355,7 +355,7 @@ export default function Home() {
                   Have a vision in mind?
                 </h2>
                 <p className="text-zinc-400 text-xs font-light mb-6 leading-relaxed">
-                  Whether you need high-performance web development, detailed 3D spatial models, or cinematic video post-production — let&apos;s create something extraordinary.
+                  Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
                 </p>
                 <a
                   href="mailto:contact@yonas.dev"
@@ -366,7 +366,7 @@ export default function Home() {
                 </a>
                 <div className="pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1">
                   <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
-                  <span>DEVELOPER • 3D MODELER • VIDEO EDITOR</span>
+                  <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
                 </div>
               </div>
             </motion.div>
@@ -421,10 +421,10 @@ export default function Home() {
 
                 <div className="max-w-2xl mx-auto mt-0.5 sm:mt-1 px-4 z-20">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white mb-1">
-                    I am a Developer, 3D Modeler & Video Editor
+                    I am a Full-Stack Developer, AI Learner & Video Editor
                   </h2>
                   <p className="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed mb-3 max-w-lg mx-auto">
-                    Crafting immersive digital experiences, real-time 3D environments, and cinematic video editing with modern creative tools and code.
+                    Architecting scalable full-stack web applications, exploring intelligent AI models, and crafting dynamic cinematic video edits.
                   </p>
 
                   <div className="flex flex-row items-center gap-3 sm:gap-4 justify-center w-full max-w-md mx-auto">
@@ -608,7 +608,7 @@ export default function Home() {
                     </h2>
 
                     <p className="text-zinc-400 text-sm sm:text-base font-light max-w-lg mx-auto mb-8 leading-relaxed">
-                      Whether you need high-performance web development, detailed 3D spatial models, or cinematic video post-production — let&apos;s create something extraordinary together.
+                      Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
@@ -630,7 +630,7 @@ export default function Home() {
 
                     <div className="mt-10 pt-6 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono">
                       <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
-                      <span>DEVELOPER • 3D MODELER • VIDEO EDITOR</span>
+                      <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
                     </div>
                   </div>
                 </motion.div>

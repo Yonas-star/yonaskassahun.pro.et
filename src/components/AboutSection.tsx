@@ -63,19 +63,19 @@ export default function AboutSection() {
         >
           <div className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400/90 mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span className="uppercase tracking-wider">Beyond Ordinary Boundaries</span>
+            <span className="uppercase tracking-wider">Full-Stack Systems • Intelligent AI</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight">
-            Crafting code, sculpted worlds, and moving visuals.
+            Architecting robust full-stack solutions, intelligent AI, and moving visuals.
           </h2>
 
           <div className="space-y-3 text-zinc-300 font-light text-sm sm:text-base leading-relaxed mb-6">
             <p>
-              Hello! I&apos;m <span className="text-white font-medium">Yonas Kassahun</span> — a multidisciplinary creator bridging the gap between rigorous software engineering, spatial 3D modeling, and cinematic video post-production.
+              Hello! I&apos;m <span className="text-white font-medium">Yonas Kassahun</span> — a full-stack engineer, enthusiastic AI learner, and creative video editor passionate about crafting comprehensive digital systems from the ground up.
             </p>
             <p className="text-zinc-400 text-xs sm:text-sm">
-              My work revolves around transforming concepts into tangible interactive experiences. From building scalable web architectures to engineering real-time 3D assets and editing dynamic video pieces, I treat every project as an opportunity to blend visual art with technical mastery.
+              I specialize in engineering full-stack architectures: designing scalable database schemas, high-throughput REST/GraphQL APIs, and microservices in Node.js and Python, matched with responsive, reactive interfaces using Next.js and TypeScript. Constantly expanding my horizons, I dive deep into machine learning foundations, neural networks, and autonomous AI agents, while delivering cinematic storytelling through dynamic video post-production.
             </p>
           </div>
 
@@ -83,20 +83,20 @@ export default function AboutSection() {
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
             {[
               {
-                title: "Development",
-                desc: "Next.js, TypeScript, full-stack systems, clean component architectures.",
+                title: "Full-Stack Dev",
+                desc: "Next.js 14, TypeScript, Node.js, Python, PostgreSQL, REST/GraphQL APIs, and scalable architectures.",
                 color: "text-blue-400",
                 delay: 0.2,
               },
               {
-                title: "3D Modeling",
-                desc: "Blender asset sculpting, procedural shaders, lighting, and WebGL integration.",
+                title: "AI Learner",
+                desc: "Deep learning fundamentals, PyTorch, LLM orchestration, AI agent workflows, and ML pipelines.",
                 color: "text-yellow-400",
                 delay: 0.3,
               },
               {
                 title: "Video Editing",
-                desc: "Premiere Pro, DaVinci Resolve grading, After Effects kinetic motion graphics.",
+                desc: "Premiere Pro, DaVinci Resolve color grading, After Effects kinetic motion graphics, and audio pacing.",
                 color: "text-purple-400",
                 delay: 0.4,
               },

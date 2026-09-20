@@ -23,7 +23,7 @@ export default function TechArsenal() {
   const categories = [
     {
       id: "code",
-      title: "Programming & 3D",
+      title: "Full-Stack Development",
       icon: Code2,
       accentColor: "border-blue-500/40 text-blue-400",
       tools: [
@@ -82,7 +82,7 @@ export default function TechArsenal() {
           }`}
         >
           <Code2 className="w-3.5 h-3.5" />
-          <span>CODE & 3D</span>
+          <span>FULL-STACK</span>
         </button>
         <button
           onClick={() => setActiveCategory("video")}

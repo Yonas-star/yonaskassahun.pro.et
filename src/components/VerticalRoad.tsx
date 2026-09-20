@@ -62,17 +62,17 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
             <stop offset="100%" stopColor="#e11d48" stopOpacity="0.40" />
           </linearGradient>
 
-          {/* Frosted Glass Gaussian Blur Filters */}
+          {/* Frosted Glass Gaussian Blur Filters: 2px blur per user specification */}
           <filter id="vertAtmosphereBlur" x="-30%" y="-10%" width="160%" height="120%">
-            <feGaussianBlur stdDeviation="28" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
           </filter>
 
           <filter id="vertFrostBlur" x="-20%" y="-5%" width="140%" height="110%">
-            <feGaussianBlur stdDeviation="12" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
           </filter>
 
           <filter id="vertLaserGlow" x="-30%" y="-10%" width="160%" height="120%">
-            <feGaussianBlur stdDeviation="5" result="glow" />
+            <feGaussianBlur stdDeviation="2" result="glow" />
             <feMerge>
               <feMergeNode in="glow" />
               <feMergeNode in="SourceGraphic" />

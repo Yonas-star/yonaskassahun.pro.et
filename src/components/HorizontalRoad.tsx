@@ -62,17 +62,17 @@ export default function HorizontalRoad({ progress }: HorizontalRoadProps) {
             <stop offset="100%" stopColor="#e11d48" stopOpacity="0.45" />
           </linearGradient>
 
-          {/* Frosted Glass Gaussian Blur Filters */}
+          {/* Frosted Glass Gaussian Blur Filters: 2px blur per user specification */}
           <filter id="roadAtmosphereBlur" x="-10%" y="-30%" width="120%" height="160%">
-            <feGaussianBlur stdDeviation="36" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
           </filter>
 
           <filter id="roadFrostBlur" x="-5%" y="-20%" width="110%" height="140%">
-            <feGaussianBlur stdDeviation="14" result="blur" />
+            <feGaussianBlur stdDeviation="2" result="blur" />
           </filter>
 
           <filter id="roadLaserGlow" x="-10%" y="-30%" width="120%" height="160%">
-            <feGaussianBlur stdDeviation="6" result="glow" />
+            <feGaussianBlur stdDeviation="2" result="glow" />
             <feMerge>
               <feMergeNode in="glow" />
               <feMergeNode in="SourceGraphic" />
