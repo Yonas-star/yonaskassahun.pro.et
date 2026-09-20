@@ -5,6 +5,7 @@ import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import HeroStatue from "@/components/HeroStatue";
 import AboutSection from "@/components/AboutSection";
+import ScrollRod from "@/components/ScrollRod";
 import { ArrowRight, Code2, Layers, Video, ExternalLink } from "lucide-react";
 
 export default function Home() {
@@ -15,6 +16,9 @@ export default function Home() {
     <main className="min-h-screen bg-[radial-gradient(ellipse_80%_70%_at_50%_0%,#18181b_0%,#09090b_55%,#030304_100%)] text-zinc-100 flex flex-col relative overflow-hidden selection:bg-zinc-800 selection:text-white">
       {/* Top subtle ambient spotlight */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[350px] bg-gradient-to-b from-white/10 via-zinc-500/5 to-transparent blur-3xl pointer-events-none" />
+
+      {/* Animated Vertical Background Rod & Scroll Guide */}
+      <ScrollRod />
 
       {/* Wave Loader & Animated Name */}
       {showLoader && (
@@ -31,7 +35,7 @@ export default function Home() {
       {!loading && <Navbar />}
 
       {/* Hero Section: Centered 3D Statue with Massive Name Behind & Vibrant Blue/Yellow Glows */}
-      <section className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 text-center relative z-10 overflow-hidden">
+      <section id="hero" className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 pt-24 pb-16 text-center relative z-10 overflow-hidden">
         {/* Left Screen: Luminous Blue Circular Gradient */}
         <div
           aria-hidden="true"
