@@ -7,15 +7,16 @@ interface SectionNode {
   id: string;
   code: string;
   name: string;
-  position: number; // estimated 0..1 range
+  color: string;
+  position: number;
 }
 
 const SECTIONS: SectionNode[] = [
-  { id: "hero", code: "00", name: "Hero", position: 0.0 },
-  { id: "about", code: "01", name: "About", position: 0.25 },
-  { id: "skill", code: "02", name: "Skill", position: 0.5 },
-  { id: "work", code: "03", name: "Work", position: 0.75 },
-  { id: "contact", code: "04", name: "Contact", position: 0.95 },
+  { id: "hero", code: "00", name: "Hero", color: "#3b82f6", position: 0.0 },
+  { id: "about", code: "01", name: "About", color: "#06b6d4", position: 0.25 },
+  { id: "skill", code: "02", name: "Skill", color: "#eab308", position: 0.5 },
+  { id: "work", code: "03", name: "Work", color: "#a855f7", position: 0.75 },
+  { id: "contact", code: "04", name: "Contact", color: "#f43f5e", position: 0.95 },
 ];
 
 export default function ScrollRod() {
@@ -25,14 +26,13 @@ export default function ScrollRod() {
   // Global page vertical scroll progress
   const { scrollYProgress } = useScroll();
 
-  // Smooth spring physics for fluid vertical rod motion
+  // Smooth spring physics for fluid vertical motion
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 90,
-    damping: 24,
+    stiffness: 85,
+    damping: 26,
     restDelta: 0.001,
   });
 
-  // Calculate percentage (0% -> 100%)
   const [scrollPercent, setScrollPercent] = useState(0);
 
   useEffect(() => {
@@ -43,7 +43,7 @@ export default function ScrollRod() {
     return () => unsubscribe();
   }, [smoothProgress]);
 
-  // Height and Y transforms for the active energy fill & traveler capsule
+  // Height and Y transforms for side guide rail
   const activeLineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
   const travelerY = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
 
@@ -60,51 +60,196 @@ export default function ScrollRod() {
 
   if (!mounted) return null;
 
+  // The wide, rounded zigzag curve path definition (smooth S-curves threading through sections)
+  const zigzagPath =
+    "M 500,0 C 760,70 760,130 500,200 C 230,270 230,340 500,410 C 770,480 770,550 500,620 C 220,690 220,770 500,840 C 720,900 600,960 500,1000";
+
   return (
     <>
       {/* ============================================================ */}
-      {/* 1. CENTRAL BACKGROUND ARCHITECTURAL SPINE ROD                 */}
-      {/* Runs continuously down the center of the entire website       */}
+      {/* 1. WIDE, ROUNDED ZIGZAG GLASSMORPHIC ROAD (Center Background) */}
+      {/* Multi-colored per section, blurred frosted glass texture     */}
       {/* ============================================================ */}
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-8 pointer-events-none z-0 flex flex-col items-center justify-start overflow-hidden opacity-80"
+        className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
       >
-        {/* Ambient Rod Glow Halo */}
-        <div className="absolute inset-y-0 w-6 bg-gradient-to-b from-blue-600/10 via-yellow-500/10 to-blue-600/10 blur-xl pointer-events-none" />
+        <svg
+          className="w-full h-full"
+          viewBox="0 0 1000 1000"
+          preserveAspectRatio="none"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <defs>
+            {/* Section-Specific Color Transitions along the Road */}
+            {/* 0-20% Hero: Blue | 20-41% About: Cyan/Emerald | 41-62% Skill: Yellow/Amber | 62-84% Work: Purple/Violet | 84-100% Contact: Rose */}
+            <linearGradient
+              id="roadSectionColors"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1000"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#3b82f6" />
+              <stop offset="12%" stopColor="#60a5fa" />
+              <stop offset="22%" stopColor="#06b6d4" />
+              <stop offset="36%" stopColor="#10b981" />
+              <stop offset="45%" stopColor="#f59e0b" />
+              <stop offset="58%" stopColor="#eab308" />
+              <stop offset="68%" stopColor="#8b5cf6" />
+              <stop offset="80%" stopColor="#a855f7" />
+              <stop offset="88%" stopColor="#f43f5e" />
+              <stop offset="100%" stopColor="#fb7185" />
+            </linearGradient>
 
-        {/* The 3D Cylindrical Background Rod Tube */}
-        <div className="relative w-2.5 h-full rounded-full bg-gradient-to-r from-zinc-900 via-zinc-700/60 to-zinc-900 border-x border-zinc-800/80 shadow-[inset_0_0_8px_rgba(0,0,0,0.9)] overflow-hidden">
-          {/* Subtle Specular Metallic Highlight Line on the cylinder face */}
-          <div className="absolute top-0 bottom-0 left-[35%] w-[1px] bg-gradient-to-b from-white/20 via-zinc-400/20 to-white/10" />
+            {/* High-Luminance Glow Gradient */}
+            <linearGradient
+              id="roadGlowGradient"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1000"
+              gradientUnits="userSpaceOnUse"
+            >
+              <stop offset="0%" stopColor="#2563eb" stopOpacity="0.45" />
+              <stop offset="25%" stopColor="#0891b2" stopOpacity="0.45" />
+              <stop offset="50%" stopColor="#d97706" stopOpacity="0.45" />
+              <stop offset="75%" stopColor="#7c3aed" stopOpacity="0.45" />
+              <stop offset="100%" stopColor="#e11d48" stopOpacity="0.45" />
+            </linearGradient>
 
-          {/* Glowing Inner Core Channel */}
-          <div className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 w-[2px] bg-zinc-950/90" />
+            {/* Frosted Glass Gaussian Blur Filter */}
+            <filter id="glassAtmosphereBlur" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="28" result="blur" />
+            </filter>
 
-          {/* Vertical Scroll Energy Beam that fills down the rod as user scrolls */}
-          <motion.div
-            style={{ height: activeLineHeight }}
-            className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-yellow-400 to-amber-500 shadow-[0_0_15px_rgba(234,179,8,0.7)]"
+            <filter id="glassFrostBlur" x="-10%" y="-10%" width="120%" height="120%">
+              <feGaussianBlur stdDeviation="12" result="blur" />
+            </filter>
+
+            <filter id="laserCoreGlow" x="-20%" y="-20%" width="140%" height="140%">
+              <feGaussianBlur stdDeviation="4" result="glow" />
+              <feMerge>
+                <feMergeNode in="glow" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+          </defs>
+
+          {/* LAYER 1: Ambient Colored Halo (Broad diffused glow shifting per section) */}
+          <path
+            d={zigzagPath}
+            stroke="url(#roadGlowGradient)"
+            strokeWidth="90"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#glassAtmosphereBlur)"
+            style={{ vectorEffect: "non-scaling-stroke" }}
           />
 
-          {/* Traveling Energy Pulse Orb riding down the background rod */}
-          <motion.div
-            style={{ top: travelerY }}
-            className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-16 rounded-full bg-gradient-to-b from-blue-400 via-white to-yellow-300 blur-[2px] opacity-90 shadow-[0_0_20px_#60a5fa,0_0_35px_#facc15]"
+          {/* LAYER 2: Wide Glassmorphic Outer Glass Bed (Frosted blurred substrate) */}
+          <path
+            d={zigzagPath}
+            stroke="rgba(255, 255, 255, 0.04)"
+            strokeWidth="54"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#glassFrostBlur)"
+            style={{ vectorEffect: "non-scaling-stroke" }}
           />
-        </div>
 
-        {/* Subtle Horizontal Graduation Hash Marks along the background rod */}
-        <div className="absolute inset-y-0 flex flex-col justify-between py-24 pointer-events-none opacity-40">
-          {Array.from({ length: 24 }).map((_, i) => (
-            <div
-              key={i}
-              className={`w-4 h-[1px] ${
-                i % 4 === 0 ? "w-6 bg-zinc-600" : "w-3 bg-zinc-800"
-              }`}
-            />
+          {/* LAYER 3: Wide Glass Road Body with Subtle Section Tint */}
+          <path
+            d={zigzagPath}
+            stroke="url(#roadSectionColors)"
+            strokeWidth="48"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeOpacity="0.10"
+            style={{ vectorEffect: "non-scaling-stroke" }}
+          />
+
+          {/* LAYER 4: Glass Specular Edge Rails (Twin crystal glass boundaries) */}
+          <path
+            d={zigzagPath}
+            stroke="rgba(255, 255, 255, 0.18)"
+            strokeWidth="50"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeDasharray="none"
+            fill="none"
+            style={{ vectorEffect: "non-scaling-stroke" }}
+          />
+
+          {/* LAYER 5: Inner Glass Sheen (Subtle reflective interior highlight) */}
+          <path
+            d={zigzagPath}
+            stroke="rgba(255, 255, 255, 0.08)"
+            strokeWidth="42"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            style={{ vectorEffect: "non-scaling-stroke" }}
+          />
+
+          {/* LAYER 6: Center Dashed Glass Lane Markings */}
+          <path
+            d={zigzagPath}
+            stroke="rgba(255, 255, 255, 0.28)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeDasharray="14 20"
+            style={{ vectorEffect: "non-scaling-stroke" }}
+          />
+
+          {/* LAYER 7: Active Vertical Scroll Energy Beam (Framer Motion progressive fill) */}
+          <motion.path
+            d={zigzagPath}
+            stroke="url(#roadSectionColors)"
+            strokeWidth="10"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            filter="url(#laserCoreGlow)"
+            style={{
+              pathLength: smoothProgress,
+              vectorEffect: "non-scaling-stroke",
+            }}
+          />
+
+          {/* LAYER 8: Section Glassmorphic Waypoint Rings at Key Zigzag Apexes */}
+          {[
+            { cx: 740, cy: 95, color: "#3b82f6", label: "HERO" },
+            { cx: 240, cy: 305, color: "#06b6d4", label: "ABOUT" },
+            { cx: 760, cy: 515, color: "#eab308", label: "SKILL" },
+            { cx: 230, cy: 730, color: "#a855f7", label: "WORK" },
+            { cx: 500, cy: 980, color: "#f43f5e", label: "CONTACT" },
+          ].map((pt, i) => (
+            <g key={i} className="opacity-75">
+              {/* Outer Blurred Colored Halo */}
+              <circle
+                cx={pt.cx}
+                cy={pt.cy}
+                r="30"
+                fill={pt.color}
+                opacity="0.25"
+                filter="url(#glassFrostBlur)"
+              />
+              {/* Frosted Glass Disc */}
+              <circle
+                cx={pt.cx}
+                cy={pt.cy}
+                r="18"
+                fill="rgba(15, 15, 20, 0.6)"
+                stroke={pt.color}
+                strokeWidth="2"
+                strokeOpacity="0.7"
+              />
+              {/* Glowing Core Pin */}
+              <circle cx={pt.cx} cy={pt.cy} r="5" fill="#ffffff" />
+            </g>
           ))}
-        </div>
+        </svg>
       </div>
 
       {/* ============================================================ */}
@@ -128,7 +273,7 @@ export default function ScrollRod() {
             {/* Active Energized Laser Track trailing the traveler */}
             <motion.div
               style={{ height: activeLineHeight }}
-              className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-cyan-400 to-yellow-400 shadow-[0_0_12px_rgba(59,130,246,0.8)]"
+              className="absolute top-0 left-0 right-0 bg-gradient-to-b from-blue-500 via-yellow-400 to-rose-500 shadow-[0_0_12px_rgba(59,130,246,0.8)]"
             />
           </div>
 
@@ -142,18 +287,18 @@ export default function ScrollRod() {
 
             {/* Outer Metallic Ring */}
             <div className="w-5 h-7 rounded-md bg-gradient-to-b from-zinc-200 via-zinc-400 to-zinc-700 border border-white/60 shadow-[0_4px_12px_rgba(0,0,0,0.8),0_0_16px_rgba(250,204,21,0.6)] flex items-center justify-center relative overflow-hidden">
-              {/* Inner Glowing Amber/Blue Core */}
-              <div className="w-2.5 h-4 rounded-sm bg-gradient-to-b from-blue-400 to-yellow-400 shadow-[0_0_8px_#facc15]" />
+              {/* Inner Glowing Core */}
+              <div className="w-2.5 h-4 rounded-sm bg-gradient-to-b from-blue-400 via-yellow-400 to-rose-400 shadow-[0_0_8px_#facc15]" />
               {/* Surface Reflection Gloss */}
               <div className="absolute inset-0 bg-gradient-to-r from-white/40 via-transparent to-transparent pointer-events-none" />
             </div>
           </motion.div>
 
-          {/* Section Waypoint Nodes along the Rod */}
+          {/* Section Waypoint Nodes along the Rod with Distinct Section Colors */}
           <div className="absolute inset-y-0 flex flex-col justify-between items-center py-2 pointer-events-auto">
             {SECTIONS.map((section, idx) => {
               const isActive =
-                scrollPercent >= idx * 23 && scrollPercent < (idx + 1) * 25 + 5;
+                scrollPercent >= idx * 22 && scrollPercent < (idx + 1) * 24 + 5;
 
               return (
                 <div
@@ -167,9 +312,13 @@ export default function ScrollRod() {
                   <div
                     className={`w-3 h-3 rounded-full border transition-all duration-300 flex items-center justify-center ${
                       isActive
-                        ? "bg-yellow-400 border-white shadow-[0_0_12px_#facc15] scale-125"
+                        ? "border-white scale-125 shadow-lg"
                         : "bg-zinc-950/90 border-zinc-700 hover:border-zinc-400 hover:scale-110"
                     }`}
+                    style={{
+                      backgroundColor: isActive ? section.color : undefined,
+                      boxShadow: isActive ? `0 0 14px ${section.color}` : undefined,
+                    }}
                   >
                     <div
                       className={`w-1 h-1 rounded-full ${
@@ -188,7 +337,8 @@ export default function ScrollRod() {
                   >
                     <span className="text-zinc-500 text-[10px]">{section.code}</span>
                     <span
-                      className={isActive ? "text-yellow-400 font-medium" : "text-zinc-300"}
+                      style={{ color: isActive ? section.color : "#d4d4d8" }}
+                      className={isActive ? "font-semibold" : "font-normal"}
                     >
                       {section.name}
                     </span>
