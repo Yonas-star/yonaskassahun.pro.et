@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
 import HeroStatue from "@/components/HeroStatue";
+import AboutSection from "@/components/AboutSection";
 import { ArrowRight, Code2, Layers, Video, ExternalLink } from "lucide-react";
 
 export default function Home() {
@@ -90,23 +91,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-24 px-6 max-w-4xl mx-auto w-full border-t border-zinc-800/80">
-        <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-3">
-          01 // OVERVIEW
-        </div>
-        <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white mb-6">
-          About
-        </h2>
-        <div className="bg-zinc-900/50 backdrop-blur-xl rounded-2xl p-8 border border-zinc-800/80 shadow-2xl text-zinc-300 leading-relaxed text-base sm:text-lg font-light">
-          <p className="mb-4">
-            Hello! I&apos;m Yonas, a developer, 3D modeler, and video editor bringing digital visions to life through high-performance code, stylized 3D worlds, and cinematic post-production.
-          </p>
-          <p>
-            I architect digital spaces and visual media where technical engineering meets fluid creative storytelling.
-          </p>
-        </div>
-      </section>
+      {/* About Section with Left-Side Video & Black Shading Layer */}
+      <AboutSection />
 
       {/* Skill Section */}
       <section id="skill" className="py-24 px-6 max-w-4xl mx-auto w-full border-t border-zinc-800/80">
