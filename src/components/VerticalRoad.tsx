@@ -1,7 +1,14 @@
-"use client";
-
 import React from "react";
 import { motion, MotionValue } from "framer-motion";
+import {
+  TypeScriptIcon,
+  PythonIcon,
+  ReactIcon,
+  NodeJSIcon,
+  PyTorchIcon,
+  GolangIcon,
+} from "@/components/TechIcons";
+import RoadTechMilestone from "./RoadTechMilestone";
 
 interface VerticalRoadProps {
   progress: MotionValue<number>;
@@ -12,10 +19,72 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
   const verticalZigzagPath =
     "M 500,0 C 820,70 820,130 500,200 C 180,270 180,340 500,410 C 820,480 820,550 500,620 C 180,690 180,770 500,840 C 750,910 650,960 500,1000";
 
+  const mobileMilestones = [
+    {
+      name: "TypeScript",
+      Icon: TypeScriptIcon,
+      progress: 95,
+      color: "#3178C6",
+      glowColor: "rgba(49, 120, 198, 0.45)",
+      leftPercent: 74.0,
+      topPercent: 10.0,
+      threshold: 0.1,
+    },
+    {
+      name: "Python",
+      Icon: PythonIcon,
+      progress: 92,
+      color: "#38BDF8",
+      glowColor: "rgba(56, 189, 248, 0.45)",
+      leftPercent: 26.0,
+      topPercent: 27.0,
+      threshold: 0.27,
+    },
+    {
+      name: "React",
+      Icon: ReactIcon,
+      progress: 94,
+      color: "#61DAFB",
+      glowColor: "rgba(97, 218, 251, 0.45)",
+      leftPercent: 50.0,
+      topPercent: 41.0,
+      threshold: 0.41,
+    },
+    {
+      name: "Node.js",
+      Icon: NodeJSIcon,
+      progress: 90,
+      color: "#339933",
+      glowColor: "rgba(51, 153, 51, 0.45)",
+      leftPercent: 74.0,
+      topPercent: 55.0,
+      threshold: 0.55,
+    },
+    {
+      name: "PyTorch",
+      Icon: PyTorchIcon,
+      progress: 86,
+      color: "#EE4C2C",
+      glowColor: "rgba(238, 76, 44, 0.45)",
+      leftPercent: 26.0,
+      topPercent: 73.0,
+      threshold: 0.73,
+    },
+    {
+      name: "Golang",
+      Icon: GolangIcon,
+      progress: 84,
+      color: "#00ADD8",
+      glowColor: "rgba(0, 173, 216, 0.45)",
+      leftPercent: 64.0,
+      topPercent: 92.0,
+      threshold: 0.92,
+    },
+  ];
+
   return (
     <div
-      aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+      className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden"
     >
       <svg
         className="w-full h-full"
@@ -152,6 +221,23 @@ export default function VerticalRoad({ progress }: VerticalRoadProps) {
           <circle r="5" fill="#fbbf24" />
         </g>
       </svg>
+
+      {/* Programming Language Road Waypoint Milestones (Mobile) */}
+      {mobileMilestones.map((item) => (
+        <RoadTechMilestone
+          key={item.name}
+          name={item.name}
+          Icon={item.Icon}
+          progress={item.progress}
+          color={item.color}
+          glowColor={item.glowColor}
+          leftPercent={item.leftPercent}
+          topPercent={item.topPercent}
+          scrollProgress={progress}
+          threshold={item.threshold}
+          size="sm"
+        />
+      ))}
     </div>
   );
 }

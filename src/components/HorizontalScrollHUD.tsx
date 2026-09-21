@@ -3,26 +3,28 @@
 import React, { useEffect, useState } from "react";
 import { MotionValue } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HorizontalScrollHUDProps {
   progress: MotionValue<number>;
   onNavigate: (index: number) => void;
 }
 
-const SECTIONS = [
-  { id: "hero", code: "00", name: "Hero", color: "#3b82f6" },
-  { id: "about", code: "01", name: "About", color: "#06b6d4" },
-  { id: "skill", code: "02", name: "Skill", color: "#eab308" },
-  { id: "work", code: "03", name: "Work", color: "#a855f7" },
-  { id: "contact", code: "04", name: "Contact", color: "#f43f5e" },
-];
-
 export default function HorizontalScrollHUD({
   progress,
   onNavigate,
 }: HorizontalScrollHUDProps) {
+  const { t } = useLanguage();
   const [percent, setPercent] = useState(0);
   const [activeIndex, setActiveIndex] = useState(0);
+
+  const SECTIONS = [
+    { id: "hero", code: "00", name: t.hud.hero, color: "#3b82f6" },
+    { id: "about", code: "01", name: t.hud.about, color: "#06b6d4" },
+    { id: "skill", code: "02", name: t.hud.skill, color: "#eab308" },
+    { id: "work", code: "03", name: t.hud.work, color: "#a855f7" },
+    { id: "contact", code: "04", name: t.hud.contact, color: "#f43f5e" },
+  ];
 
   useEffect(() => {
     const unsub = progress.on("change", (latest) => {

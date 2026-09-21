@@ -3,8 +3,32 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { Sparkles, CheckCircle2 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function AboutSection() {
+  const { t } = useLanguage();
+
+  const pillars = [
+    {
+      title: t.about.pillars.fullstack.title,
+      desc: t.about.pillars.fullstack.desc,
+      color: "text-blue-400",
+      delay: 0.2,
+    },
+    {
+      title: t.about.pillars.ai.title,
+      desc: t.about.pillars.ai.desc,
+      color: "text-yellow-400",
+      delay: 0.3,
+    },
+    {
+      title: t.about.pillars.video.title,
+      desc: t.about.pillars.video.desc,
+      color: "text-purple-400",
+      delay: 0.4,
+    },
+  ];
+
   return (
     <div className="w-full max-w-6xl mx-auto px-4 sm:px-10 py-8 sm:py-12 flex flex-col justify-center relative z-20">
       {/* Section Sub-header */}
@@ -17,7 +41,7 @@ export default function AboutSection() {
       >
         <span className="w-8 h-[1px] bg-cyan-500/60" />
         <span className="text-xs font-mono text-cyan-400 uppercase tracking-widest">
-          01 // ABOUT & IDENTITY
+          {t.about.subtitle}
         </span>
       </motion.div>
 
@@ -61,44 +85,26 @@ export default function AboutSection() {
         >
           <div className="inline-flex items-center gap-2 text-xs font-mono text-cyan-400/90 mb-3">
             <Sparkles className="w-3.5 h-3.5" />
-            <span className="uppercase tracking-wider">Full-Stack Systems • Intelligent AI</span>
+            <span className="uppercase tracking-wider">{t.about.tagline}</span>
           </div>
 
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-white mb-4 leading-tight">
-            Architecting robust full-stack solutions, intelligent AI, and moving visuals.
+            {t.about.heading}
           </h2>
 
           <div className="space-y-3 text-zinc-300 font-light text-sm sm:text-base leading-relaxed mb-6">
             <p>
-              Hello! I&apos;m <span className="text-white font-medium">Yonas Kassahun</span> — a full-stack engineer, enthusiastic AI learner, and creative video editor passionate about crafting comprehensive digital systems from the ground up.
+              {t.about.greeting} <span className="text-white font-medium">{t.about.name}</span>{" "}
+              {t.about.roleIntro}
             </p>
             <p className="text-zinc-400 text-xs sm:text-sm">
-              I specialize in engineering full-stack architectures: designing scalable database schemas, high-throughput REST/GraphQL APIs, and microservices in Node.js and Python, matched with responsive, reactive interfaces using Next.js and TypeScript. Constantly expanding my horizons, I dive deep into machine learning foundations, neural networks, and autonomous AI agents, while delivering cinematic storytelling through dynamic video post-production.
+              {t.about.bio}
             </p>
           </div>
 
           {/* Three Focused Pillars with Staggered Animations */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6">
-            {[
-              {
-                title: "Full-Stack Dev",
-                desc: "Next.js 14, TypeScript, Node.js, Python, PostgreSQL, REST/GraphQL APIs, and scalable architectures.",
-                color: "text-blue-400",
-                delay: 0.2,
-              },
-              {
-                title: "AI Learner",
-                desc: "Deep learning fundamentals, PyTorch, LLM orchestration, AI agent workflows, and ML pipelines.",
-                color: "text-yellow-400",
-                delay: 0.3,
-              },
-              {
-                title: "Video Editing",
-                desc: "Premiere Pro, DaVinci Resolve color grading, After Effects kinetic motion graphics, and audio pacing.",
-                color: "text-purple-400",
-                delay: 0.4,
-              },
-            ].map((col, idx) => (
+            {pillars.map((col, idx) => (
               <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 15 }}
@@ -123,13 +129,13 @@ export default function AboutSection() {
               href="#work"
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-white text-zinc-950 font-medium text-xs sm:text-sm hover:bg-zinc-200 transition-colors shadow-lg active:scale-95"
             >
-              View Featured Work
+              {t.about.viewWork}
             </a>
             <a
               href="#contact"
               className="inline-flex items-center justify-center px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-colors text-xs sm:text-sm font-medium active:scale-95"
             >
-              Get In Touch
+              {t.about.contactMe}
             </a>
           </div>
         </motion.div>

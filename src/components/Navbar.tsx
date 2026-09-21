@@ -2,7 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { User, Sparkles, Briefcase, Mail, Menu, X, ArrowUpRight } from "lucide-react";
+import { User, Sparkles, Briefcase, Mail, Menu, X, ArrowUpRight, Languages } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface NavbarProps {
   className?: string;
@@ -15,15 +16,16 @@ export default function Navbar({
   onNavigate,
   activeIndex,
 }: NavbarProps) {
+  const { language, setLanguage, t } = useLanguage();
   const [scrolled, setScrolled] = useState(false);
   const [internalActiveSection, setInternalActiveSection] = useState("about");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: "About", href: "#about", icon: User, index: 1 },
-    { label: "Skill", href: "#skill", icon: Sparkles, index: 2 },
-    { label: "Work", href: "#work", icon: Briefcase, index: 3 },
-    { label: "Contact", href: "#contact", icon: Mail, index: 4 },
+    { label: t.nav.about, href: "#about", icon: User, index: 1 },
+    { label: t.nav.skill, href: "#skill", icon: Sparkles, index: 2 },
+    { label: t.nav.work, href: "#work", icon: Briefcase, index: 3 },
+    { label: t.nav.contact, href: "#contact", icon: Mail, index: 4 },
   ];
 
   const sectionIndexMap: Record<number, string> = {
@@ -133,8 +135,36 @@ export default function Navbar({
           })}
         </div>
 
-        {/* Right Action / Contact CTA */}
+        {/* Right Action / Contact CTA & Language Switcher */}
         <div className="flex items-center gap-2">
+          {/* Language Switcher Toggle */}
+          <div className="flex items-center bg-zinc-950/70 border border-zinc-800/90 rounded-xl p-0.5 backdrop-blur-md shadow-inner">
+            <button
+              type="button"
+              onClick={() => setLanguage("en")}
+              className={`px-2 py-1 rounded-lg text-xs font-mono font-medium transition-all duration-200 ${
+                language === "en"
+                  ? "bg-white text-zinc-950 font-bold shadow-sm"
+                  : "text-zinc-400 hover:text-white"
+              }`}
+              aria-label="Switch to English"
+            >
+              EN
+            </button>
+            <button
+              type="button"
+              onClick={() => setLanguage("am")}
+              className={`px-2 py-1 rounded-lg text-xs font-mono font-medium transition-all duration-200 ${
+                language === "am"
+                  ? "bg-white text-zinc-950 font-bold shadow-sm"
+                  : "text-zinc-400 hover:text-white"
+              }`}
+              aria-label="Switch to Amharic"
+            >
+              አማ
+            </button>
+          </div>
+
           <a
             href="#contact"
             onClick={(e) => {
@@ -143,7 +173,7 @@ export default function Navbar({
             }}
             className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-white text-zinc-950 text-xs font-medium hover:bg-zinc-200 transition-all active:scale-95 shadow-sm"
           >
-            <span>Let&apos;s Talk</span>
+            <span>{t.nav.letsTalk}</span>
             <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
 
@@ -168,6 +198,38 @@ export default function Navbar({
             transition={{ duration: 0.2 }}
             className="absolute top-20 left-4 right-4 bg-zinc-900/95 backdrop-blur-2xl rounded-2xl p-4 border border-zinc-800 shadow-2xl flex flex-col gap-2 md:hidden z-50 text-white"
           >
+            {/* Mobile Language Switcher Row */}
+            <div className="flex items-center justify-between p-2 rounded-xl bg-zinc-950/70 border border-zinc-800/80 mb-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-zinc-400">
+                <Languages className="w-4 h-4 text-zinc-300" />
+                <span>Language / ቋንቋ</span>
+              </div>
+              <div className="flex items-center bg-zinc-900 border border-zinc-800 rounded-lg p-0.5">
+                <button
+                  type="button"
+                  onClick={() => setLanguage("en")}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-all ${
+                    language === "en"
+                      ? "bg-white text-zinc-950 font-bold"
+                      : "text-zinc-400"
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLanguage("am")}
+                  className={`px-2.5 py-1 rounded text-xs font-mono font-medium transition-all ${
+                    language === "am"
+                      ? "bg-white text-zinc-950 font-bold"
+                      : "text-zinc-400"
+                  }`}
+                >
+                  አማ
+                </button>
+              </div>
+            </div>
+
             {navItems.map((item) => {
               const Icon = item.icon;
               const isActive = currentActiveSection === item.href.slice(1);
@@ -199,7 +261,7 @@ export default function Navbar({
                 }}
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-white text-zinc-950 text-sm font-medium shadow-md active:scale-95"
               >
-                <span>Get In Touch</span>
+                <span>{t.nav.getInTouch}</span>
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>

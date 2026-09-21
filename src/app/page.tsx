@@ -38,8 +38,10 @@ import {
   Facebook,
   Mail,
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -103,9 +105,9 @@ export default function Home() {
       icon: Code2,
       color: "text-blue-400",
       border: "hover:border-blue-500/50",
-      title: "Full-Stack Dev",
-      desc: "TypeScript, Next.js 14, React, Node.js, Python, PostgreSQL, REST/GraphQL APIs, and high-performance cloud architectures.",
-      tags: ["TYPESCRIPT", "NEXT.JS", "NODE.JS", "PYTHON", "POSTGRESQL"],
+      title: t.skills.cards.fullstack.title,
+      desc: t.skills.cards.fullstack.desc,
+      tags: t.skills.cards.fullstack.tags,
       techIcons: [
         { name: "TypeScript", Icon: TypeScriptIcon },
         { name: "React", Icon: ReactIcon },
@@ -119,9 +121,9 @@ export default function Home() {
       icon: Brain,
       color: "text-yellow-400",
       border: "hover:border-yellow-500/50",
-      title: "AI Learner",
-      desc: "Deep learning fundamentals, PyTorch, LLM orchestration, autonomous AI agents, prompt engineering, and machine learning pipelines.",
-      tags: ["PYTORCH", "LLMS", "AI AGENTS", "MACHINE LEARNING"],
+      title: t.skills.cards.ai.title,
+      desc: t.skills.cards.ai.desc,
+      tags: t.skills.cards.ai.tags,
       techIcons: [
         { name: "PyTorch", Icon: PyTorchIcon },
         { name: "OpenAI", Icon: OpenAIIcon },
@@ -135,9 +137,9 @@ export default function Home() {
       icon: Video,
       color: "text-purple-400",
       border: "hover:border-purple-500/50",
-      title: "Video Editing",
-      desc: "Adobe Premiere Pro, After Effects kinetic motion graphics, DaVinci Resolve color grading, dynamic pacing and audio mastering.",
-      tags: ["PREMIERE", "AFTER EFFECTS", "DAVINCI"],
+      title: t.skills.cards.video.title,
+      desc: t.skills.cards.video.desc,
+      tags: t.skills.cards.video.tags,
       techIcons: [
         { name: "Premiere Pro", Icon: PremiereIcon },
         { name: "After Effects", Icon: AfterEffectsIcon },
@@ -151,24 +153,26 @@ export default function Home() {
   // Reusable Work Projects Data
   const workProjects = [
     {
-      title: "AgarAI",
-      desc: "Digital AI employees engineered to streamline workflows, handle customer operations, and execute complex business tasks with intelligent multi-agent orchestration.",
-      tags: ["NEXT.JS", "DIGITAL EMPLOYEES", "AI AGENTS", "LLMS"],
-      badge: "DIGITAL AI EMPLOYEES",
+      title: t.work.projects.agarai.title,
+      desc: t.work.projects.agarai.desc,
+      tags: t.work.projects.agarai.tags,
+      badge: t.work.projects.agarai.badge,
       status: "LIVE",
+      statusLabel: t.work.liveBadge,
       link: "https://agarai.pro.et",
       displayUrl: "agarai.pro.et",
       color: "from-cyan-500/25 via-blue-600/15 to-purple-500/10",
       delay: 0.1,
     },
     {
-      title: "AdwaSec",
-      desc: "AI cyber security analyst and automated report generator designed to detect vulnerabilities, analyze threat vectors, and generate comprehensive security audit documentation.",
-      tags: ["CYBERSECURITY", "AI ANALYST", "AUDIT REPORTS", "THREAT INTEL"],
-      badge: "IN BUILDING",
+      title: t.work.projects.adwasec.title,
+      desc: t.work.projects.adwasec.desc,
+      tags: t.work.projects.adwasec.tags,
+      badge: t.work.projects.adwasec.badge,
       status: "IN BUILDING",
+      statusLabel: t.work.inBuildingBadge,
       link: null,
-      displayUrl: "In Building",
+      displayUrl: t.work.inBuildingText,
       color: "from-amber-500/25 via-rose-600/15 to-purple-500/10",
       delay: 0.25,
     },
@@ -275,10 +279,10 @@ export default function Home() {
 
             <div className="max-w-xl mx-auto mt-2 px-2 z-20">
               <h2 className="text-xl font-bold tracking-tight text-white mb-2">
-                I am a Full-Stack Developer, AI Learner & Video Editor
+                {t.hero.title}
               </h2>
               <p className="text-zinc-400 text-xs font-light leading-relaxed mb-6">
-                Architecting scalable full-stack web applications, exploring intelligent AI models, and crafting dynamic cinematic video edits.
+                {t.hero.desc}
               </p>
 
               <div className="flex flex-col gap-3 w-full max-w-xs mx-auto">
@@ -286,7 +290,7 @@ export default function Home() {
                   href="#work"
                   className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-xs"
                 >
-                  <span>Explore Work</span>
+                  <span>{t.hero.exploreWork}</span>
                   <ArrowRight className="w-3.5 h-3.5" />
                 </a>
 
@@ -294,7 +298,7 @@ export default function Home() {
                   href="#contact"
                   className="w-full inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all text-xs font-medium shadow-sm active:scale-95"
                 >
-                  <span>Get In Touch</span>
+                  <span>{t.hero.getInTouch}</span>
                 </a>
               </div>
             </div>
@@ -318,11 +322,11 @@ export default function Home() {
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="w-6 h-[1px] bg-yellow-500/60" />
                   <span className="text-[11px] font-mono text-yellow-400 uppercase tracking-widest">
-                    02 // CAPABILITIES
+                    {t.skills.subtitle}
                   </span>
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight text-white">
-                  Specialized Skills
+                  {t.skills.heading}
                 </h2>
               </motion.div>
 
@@ -393,11 +397,11 @@ export default function Home() {
                 <div className="flex items-center justify-center gap-2 mb-2">
                   <span className="w-6 h-[1px] bg-purple-500/60" />
                   <span className="text-[11px] font-mono text-purple-400 uppercase tracking-widest">
-                    03 // FEATURED WORK
+                    {t.work.subtitle}
                   </span>
                 </div>
                 <h2 className="text-3xl font-extrabold tracking-tight text-white">
-                  Recent Creations
+                  {t.work.heading}
                 </h2>
               </motion.div>
 
@@ -429,7 +433,7 @@ export default function Home() {
                               item.status === "LIVE" ? "bg-cyan-400 animate-pulse" : "bg-amber-400 animate-ping"
                             }`}
                           />
-                          {item.badge}
+                          {item.statusLabel}
                         </span>
 
                         {isLink ? (
@@ -445,7 +449,7 @@ export default function Home() {
                         ) : (
                           <span className="inline-flex items-center gap-1 text-[10px] font-mono text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2 py-0.5 rounded-md">
                             <Clock className="w-3 h-3 text-amber-400" />
-                            <span>In Building</span>
+                            <span>{t.work.inBuildingText}</span>
                           </span>
                         )}
                       </div>
@@ -497,20 +501,20 @@ export default function Home() {
               <div className="rounded-2xl bg-zinc-900/60 backdrop-blur-2xl border border-zinc-800/80 p-6 shadow-2xl text-center">
                 <div className="inline-flex items-center gap-2 text-[10px] font-mono text-rose-400 mb-3 px-2.5 py-0.5 rounded-full bg-rose-500/10 border border-rose-500/20">
                   <Sparkles className="w-3 h-3" />
-                  <span>04 // LET&apos;S BUILD TOGETHER</span>
+                  <span>{t.contact.badge}</span>
                 </div>
                 <h2 className="text-2xl font-extrabold tracking-tight text-white mb-3">
-                  Have a vision in mind?
+                  {t.contact.heading}
                 </h2>
                 <p className="text-zinc-400 text-xs font-light mb-6 leading-relaxed">
-                  Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
+                  {t.contact.desc}
                 </p>
                 <a
                   href="mailto:yonaskassahunyoka@gmail.com"
                   className="w-full inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-white text-zinc-950 font-semibold text-xs shadow-lg active:scale-95 mb-6"
                 >
                   <Send className="w-3.5 h-3.5" />
-                  <span>Send a Message</span>
+                  <span>{t.contact.sendMessage}</span>
                 </a>
 
                 {/* Social Links Section for Instagram, LinkedIn, GitHub, Facebook, Email */}
@@ -518,9 +522,9 @@ export default function Home() {
                   <div className="flex items-center justify-between mb-3 px-1">
                     <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-bold flex items-center gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      SOCIAL CHANNELS
+                      {t.contact.socialHeading}
                     </span>
-                    <span className="text-[10px] font-mono text-zinc-500">5 NETWORKS</span>
+                    <span className="text-[10px] font-mono text-zinc-500">{t.contact.socialCount}</span>
                   </div>
 
                   <div className="grid grid-cols-1 gap-2">
@@ -543,7 +547,7 @@ export default function Home() {
                                 {social.name}
                               </p>
                               <p className="text-[10px] text-zinc-400 font-mono">
-                                {social.handle}
+                                {social.name === "Email" ? t.contact.directMail : social.handle}
                               </p>
                             </div>
                           </div>
@@ -555,8 +559,8 @@ export default function Home() {
                 </div>
 
                 <div className="mt-6 pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1">
-                  <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
-                  <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
+                  <span>{t.contact.footerCopyright}</span>
+                  <span>{t.contact.footerRoles}</span>
                 </div>
               </div>
             </motion.div>
@@ -611,10 +615,10 @@ export default function Home() {
 
                 <div className="max-w-2xl mx-auto mt-0.5 sm:mt-1 px-4 z-20">
                   <h2 className="text-lg sm:text-xl md:text-2xl font-bold tracking-tight text-white mb-1">
-                    I am a Full-Stack Developer, AI Learner & Video Editor
+                    {t.hero.title}
                   </h2>
                   <p className="text-zinc-400 text-xs sm:text-sm font-light leading-relaxed mb-3 max-w-lg mx-auto">
-                    Architecting scalable full-stack web applications, exploring intelligent AI models, and crafting dynamic cinematic video edits.
+                    {t.hero.desc}
                   </p>
 
                   <div className="flex flex-row items-center gap-3 sm:gap-4 justify-center w-full max-w-md mx-auto">
@@ -622,7 +626,7 @@ export default function Home() {
                       onClick={() => handleNavigate(3)}
                       className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-xs sm:text-sm"
                     >
-                      <span>Explore Work</span>
+                      <span>{t.hero.exploreWork}</span>
                       <ArrowRight className="w-3.5 h-3.5" />
                     </button>
 
@@ -630,7 +634,7 @@ export default function Home() {
                       onClick={() => handleNavigate(4)}
                       className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-zinc-900/80 border border-zinc-800 text-zinc-300 hover:bg-zinc-800 hover:text-white transition-all text-xs sm:text-sm font-medium shadow-sm active:scale-95"
                     >
-                      <span>Get In Touch</span>
+                      <span>{t.hero.getInTouch}</span>
                     </button>
                   </div>
                 </div>
@@ -660,11 +664,11 @@ export default function Home() {
                     <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
                       <span className="w-8 h-[1px] bg-yellow-500/60" />
                       <span className="text-xs font-mono text-yellow-400 uppercase tracking-widest">
-                        02 // CAPABILITIES & CRAFT
+                        {t.skills.subtitle}
                       </span>
                     </div>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-                      Specialized Skills
+                      {t.skills.heading}
                     </h2>
                   </motion.div>
 
@@ -739,11 +743,11 @@ export default function Home() {
                     <div className="flex items-center justify-center sm:justify-start gap-3 mb-2">
                       <span className="w-8 h-[1px] bg-purple-500/60" />
                       <span className="text-xs font-mono text-purple-400 uppercase tracking-widest">
-                        03 // FEATURED WORK
+                        {t.work.subtitle}
                       </span>
                     </div>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
-                      Recent Creations
+                      {t.work.heading}
                     </h2>
                   </motion.div>
 
@@ -777,7 +781,7 @@ export default function Home() {
                                     item.status === "LIVE" ? "bg-cyan-400 animate-pulse" : "bg-amber-400 animate-ping"
                                   }`}
                                 />
-                                {item.badge}
+                                {item.statusLabel}
                               </span>
 
                               {isLink ? (
@@ -793,7 +797,7 @@ export default function Home() {
                               ) : (
                                 <span className="inline-flex items-center gap-1.5 text-xs font-mono text-amber-400/90 bg-amber-500/10 border border-amber-500/20 px-2.5 py-1 rounded-lg">
                                   <Clock className="w-3.5 h-3.5 text-amber-400" />
-                                  <span>In Building</span>
+                                  <span>{t.work.inBuildingText}</span>
                                 </span>
                               )}
                             </div>
@@ -852,15 +856,15 @@ export default function Home() {
 
                     <div className="inline-flex items-center gap-2 text-xs font-mono text-rose-400 mb-4 px-3 py-1 rounded-full bg-rose-500/10 border border-rose-500/20">
                       <Sparkles className="w-3.5 h-3.5" />
-                      <span>04 // LET&apos;S BUILD TOGETHER</span>
+                      <span>{t.contact.badge}</span>
                     </div>
 
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-3">
-                      Have a vision in mind?
+                      {t.contact.heading}
                     </h2>
 
                     <p className="text-zinc-400 text-sm sm:text-base font-light max-w-lg mx-auto mb-6 leading-relaxed">
-                      Whether you need scalable full-stack development, intelligent AI integrations, or cinematic video post-production — let&apos;s create something extraordinary together.
+                      {t.contact.desc}
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto mb-8">
@@ -869,14 +873,14 @@ export default function Home() {
                         className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3 rounded-xl bg-white text-zinc-950 font-semibold hover:bg-zinc-200 transition-all shadow-lg active:scale-95 text-xs sm:text-sm"
                       >
                         <Send className="w-3.5 h-3.5" />
-                        <span>Send a Message</span>
+                        <span>{t.contact.sendMessage}</span>
                       </a>
 
                       <button
                         onClick={() => handleNavigate(0)}
                         className="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all text-xs sm:text-sm font-medium active:scale-95"
                       >
-                        Back to Start
+                        {t.contact.backToStart}
                       </button>
                     </div>
 
@@ -886,10 +890,10 @@ export default function Home() {
                         <div className="flex items-center gap-2">
                           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                           <span className="text-[11px] font-mono uppercase tracking-widest text-zinc-400 font-bold">
-                            SOCIAL CHANNELS & PROFILES
+                            {t.contact.socialHeading}
                           </span>
                         </div>
-                        <span className="text-[10px] font-mono text-zinc-500">5 NETWORKS</span>
+                        <span className="text-[10px] font-mono text-zinc-500">{t.contact.socialCount}</span>
                       </div>
 
                       <div className="grid grid-cols-2 sm:grid-cols-5 gap-2.5">
@@ -912,7 +916,7 @@ export default function Home() {
                                 {social.name}
                               </span>
                               <span className="text-[9px] text-zinc-400 font-mono truncate max-w-[100px] mt-0.5">
-                                {social.name === "Email" ? "Direct Mail" : social.handle}
+                                {social.name === "Email" ? t.contact.directMail : social.handle}
                               </span>
                             </motion.a>
                           );
@@ -921,8 +925,8 @@ export default function Home() {
                     </div>
 
                     <div className="mt-6 pt-4 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono">
-                      <span>© {new Date().getFullYear()} YONAS KASSAHUN</span>
-                      <span>FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR</span>
+                      <span>{t.contact.footerCopyright}</span>
+                      <span>{t.contact.footerRoles}</span>
                     </div>
                   </div>
                 </motion.div>

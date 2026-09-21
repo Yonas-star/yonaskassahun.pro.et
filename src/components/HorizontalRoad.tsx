@@ -1,7 +1,18 @@
-"use client";
-
 import React from "react";
 import { motion, MotionValue } from "framer-motion";
+import {
+  TypeScriptIcon,
+  JavaScriptIcon,
+  PythonIcon,
+  ReactIcon,
+  NextJSIcon,
+  NodeJSIcon,
+  PyTorchIcon,
+  GolangIcon,
+  CPPIcon,
+  RustIcon,
+} from "@/components/TechIcons";
+import RoadTechMilestone from "./RoadTechMilestone";
 
 interface HorizontalRoadProps {
   progress: MotionValue<number>;
@@ -12,10 +23,112 @@ export default function HorizontalRoad({ progress }: HorizontalRoadProps) {
   const zigzagPath =
     "M 0,500 C 250,220 500,220 750,500 C 1000,780 1250,780 1500,500 C 1750,220 2000,220 2250,500 C 2500,780 2750,780 3000,500 C 3250,220 3500,220 3750,500 C 4000,780 4250,780 4500,500 C 4750,280 4900,420 5000,500";
 
+  const milestones = [
+    {
+      name: "TypeScript",
+      Icon: TypeScriptIcon,
+      progress: 95,
+      color: "#3178C6",
+      glowColor: "rgba(49, 120, 198, 0.45)",
+      leftPercent: 8.4,
+      topPercent: 26.0,
+      threshold: 0.08,
+    },
+    {
+      name: "JavaScript",
+      Icon: JavaScriptIcon,
+      progress: 96,
+      color: "#F7DF1E",
+      glowColor: "rgba(247, 223, 30, 0.40)",
+      leftPercent: 17.2,
+      topPercent: 57.0,
+      threshold: 0.17,
+    },
+    {
+      name: "Python",
+      Icon: PythonIcon,
+      progress: 92,
+      color: "#38BDF8",
+      glowColor: "rgba(56, 189, 248, 0.45)",
+      leftPercent: 25.4,
+      topPercent: 76.0,
+      threshold: 0.25,
+    },
+    {
+      name: "React",
+      Icon: ReactIcon,
+      progress: 94,
+      color: "#61DAFB",
+      glowColor: "rgba(97, 218, 251, 0.45)",
+      leftPercent: 35.0,
+      topPercent: 23.0,
+      threshold: 0.35,
+    },
+    {
+      name: "Next.js",
+      Icon: NextJSIcon,
+      progress: 95,
+      color: "#E4E4E7",
+      glowColor: "rgba(255, 255, 255, 0.45)",
+      leftPercent: 45.0,
+      topPercent: 49.0,
+      threshold: 0.45,
+    },
+    {
+      name: "Node.js",
+      Icon: NodeJSIcon,
+      progress: 90,
+      color: "#339933",
+      glowColor: "rgba(51, 153, 51, 0.45)",
+      leftPercent: 54.4,
+      topPercent: 77.0,
+      threshold: 0.54,
+    },
+    {
+      name: "PyTorch",
+      Icon: PyTorchIcon,
+      progress: 86,
+      color: "#EE4C2C",
+      glowColor: "rgba(238, 76, 44, 0.45)",
+      leftPercent: 65.0,
+      topPercent: 23.0,
+      threshold: 0.65,
+    },
+    {
+      name: "Golang",
+      Icon: GolangIcon,
+      progress: 84,
+      color: "#00ADD8",
+      glowColor: "rgba(0, 173, 216, 0.45)",
+      leftPercent: 75.0,
+      topPercent: 50.0,
+      threshold: 0.75,
+    },
+    {
+      name: "C++",
+      Icon: CPPIcon,
+      progress: 82,
+      color: "#00599C",
+      glowColor: "rgba(0, 89, 156, 0.45)",
+      leftPercent: 85.0,
+      topPercent: 77.0,
+      threshold: 0.85,
+    },
+    {
+      name: "Rust",
+      Icon: RustIcon,
+      progress: 80,
+      color: "#F97316",
+      glowColor: "rgba(249, 115, 22, 0.45)",
+      leftPercent: 94.4,
+      topPercent: 38.0,
+      threshold: 0.94,
+    },
+  ];
+
   return (
     <div
-      aria-hidden="true"
-      className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden"
+      className="absolute inset-0 w-full h-full pointer-events-none z-10 overflow-hidden"
     >
       <svg
         className="w-full h-full"
@@ -171,6 +284,23 @@ export default function HorizontalRoad({ progress }: HorizontalRoadProps) {
           <circle r="6" fill="#fbbf24" />
         </g>
       </svg>
+
+      {/* Programming Language Road Waypoint Milestones */}
+      {milestones.map((item) => (
+        <RoadTechMilestone
+          key={item.name}
+          name={item.name}
+          Icon={item.Icon}
+          progress={item.progress}
+          color={item.color}
+          glowColor={item.glowColor}
+          leftPercent={item.leftPercent}
+          topPercent={item.topPercent}
+          scrollProgress={progress}
+          threshold={item.threshold}
+          size="md"
+        />
+      ))}
     </div>
   );
 }
