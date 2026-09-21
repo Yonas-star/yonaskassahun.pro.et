@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { motion, useScroll, useSpring, useTransform } from "framer-motion";
 import Loader from "@/components/Loader";
 import Navbar from "@/components/Navbar";
@@ -558,8 +559,16 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="mt-6 pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1">
-                  <span>{t.contact.footerCopyright}</span>
+                <div className="mt-6 pt-4 border-t border-zinc-800/60 text-[10px] text-zinc-500 font-mono flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <span>{t.contact.footerCopyright}</span>
+                    <Link
+                      href="/cookie-policy"
+                      className="text-zinc-400 hover:text-amber-400 underline underline-offset-2 transition-colors"
+                    >
+                      {t.contact.cookiePolicy}
+                    </Link>
+                  </div>
                   <span>{t.contact.footerRoles}</span>
                 </div>
               </div>
@@ -924,8 +933,17 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono">
-                      <span>{t.contact.footerCopyright}</span>
+                    <div className="mt-6 pt-4 border-t border-zinc-800/60 flex flex-col sm:flex-row items-center justify-between text-xs text-zinc-500 font-mono gap-2">
+                      <div className="flex items-center gap-3">
+                        <span>{t.contact.footerCopyright}</span>
+                        <span>•</span>
+                        <Link
+                          href="/cookie-policy"
+                          className="text-zinc-400 hover:text-amber-400 underline underline-offset-2 transition-colors"
+                        >
+                          {t.contact.cookiePolicy}
+                        </Link>
+                      </div>
                       <span>{t.contact.footerRoles}</span>
                     </div>
                   </div>

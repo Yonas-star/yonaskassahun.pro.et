@@ -94,6 +94,7 @@ export interface TranslationData {
     directMail: string;
     footerCopyright: string;
     footerRoles: string;
+    cookiePolicy: string;
   };
   hud: {
     hero: string;
@@ -101,6 +102,44 @@ export interface TranslationData {
     skill: string;
     work: string;
     contact: string;
+  };
+  cookieBanner: {
+    title: string;
+    description: string;
+    acceptAll: string;
+    essentialOnly: string;
+    viewPolicy: string;
+  };
+  cookiePolicy: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    lastUpdated: string;
+    backToHome: string;
+    intro: string;
+    whatAreCookiesTitle: string;
+    whatAreCookiesDesc: string;
+    howWeUseTitle: string;
+    howWeUseDesc: string;
+    cookieTableTitle: string;
+    cookieTableHeaders: {
+      name: string;
+      purpose: string;
+      duration: string;
+      type: string;
+    };
+    cookieItems: Array<{
+      name: string;
+      purpose: string;
+      duration: string;
+      type: string;
+    }>;
+    thirdPartyTitle: string;
+    thirdPartyDesc: string;
+    managingCookiesTitle: string;
+    managingCookiesDesc: string;
+    contactTitle: string;
+    contactDesc: string;
   };
 }
 
@@ -199,6 +238,7 @@ export const translations: Record<Language, TranslationData> = {
       directMail: "Direct Mail",
       footerCopyright: "© 2026 YONAS KASSAHUN",
       footerRoles: "FULL-STACK DEVELOPER • AI LEARNER • VIDEO EDITOR",
+      cookiePolicy: "Cookie Policy",
     },
     hud: {
       hero: "Hero",
@@ -206,6 +246,60 @@ export const translations: Record<Language, TranslationData> = {
       skill: "Skill",
       work: "Work",
       contact: "Contact",
+    },
+    cookieBanner: {
+      title: "Cookie & Privacy Preferences",
+      description:
+        "This website uses essential browser storage to remember your language preferences and provide a smooth, interactive 3D portfolio experience. No marketing or tracking cookies are used.",
+      acceptAll: "Accept All",
+      essentialOnly: "Essential Only",
+      viewPolicy: "Learn More",
+    },
+    cookiePolicy: {
+      badge: "LEGAL & TRANSPARENCY",
+      title: "Cookie Policy",
+      subtitle:
+        "Learn how we handle local storage and cookies to provide a fast, personalized experience on this portfolio.",
+      lastUpdated: "Last Updated: September 2026",
+      backToHome: "Back to Portfolio",
+      intro:
+        "This Cookie Policy explains what cookies and browser storage technologies are, how they are used across this portfolio website, and how you can manage your preferences.",
+      whatAreCookiesTitle: "1. What Are Cookies and Local Storage?",
+      whatAreCookiesDesc:
+        "Cookies are small text files stored on your device by your web browser when visiting websites. Modern web applications also use Local Storage and Session Storage, which allow websites to store key-value data directly in your browser without transmitting data back and forth to external ad tracking servers.",
+      howWeUseTitle: "2. How This Website Uses Storage",
+      howWeUseDesc:
+        "We believe in privacy by design. This portfolio does NOT use advertising cookies, marketing pixels, cross-site trackers, or invasive analytics. We only use strictly necessary browser storage to maintain your user preferences (such as your chosen language) and remember your cookie consent decision.",
+      cookieTableTitle: "3. Technologies & Storage Keys Used",
+      cookieTableHeaders: {
+        name: "Storage Key / Cookie",
+        purpose: "Purpose & Functionality",
+        duration: "Duration",
+        type: "Type",
+      },
+      cookieItems: [
+        {
+          name: "portfolio_lang",
+          purpose: "Saves your preferred language selection (English or Amharic) across pages and visits.",
+          duration: "Persistent (Local Storage)",
+          type: "Strictly Essential",
+        },
+        {
+          name: "cookie_consent",
+          purpose: "Remembers your cookie banner preference so you are not prompted repeatedly.",
+          duration: "Persistent (Local Storage)",
+          type: "Strictly Essential",
+        },
+      ],
+      thirdPartyTitle: "4. Third-Party Links & Services",
+      thirdPartyDesc:
+        "This portfolio provides direct external links to professional platforms including GitHub, LinkedIn, Instagram, and Facebook. When clicking on external links, those external platforms have their own independent cookie and privacy policies which are governed by their respective services.",
+      managingCookiesTitle: "5. How to Control & Manage Cookies",
+      managingCookiesDesc:
+        "You have complete control over cookies and local storage. You can delete or block storage at any time directly through your web browser settings (Chrome, Safari, Firefox, Edge, etc.). Note that clearing your browser storage may reset your language preference to the default.",
+      contactTitle: "6. Questions or Inquiries?",
+      contactDesc:
+        "If you have questions regarding this Cookie Policy or data privacy on this portfolio, feel free to reach out via email at yonaskassahunyoka@gmail.com.",
     },
   },
   am: {
@@ -302,6 +396,7 @@ export const translations: Record<Language, TranslationData> = {
       directMail: "ቀጥታ ኢሜይል",
       footerCopyright: "© 2026 ዮናስ ካሳሁን",
       footerRoles: "ሙሉ-ስታክ አበልጻጊ • የ-AI ተማሪ • ቪዲዮ ኤዲተር",
+      cookiePolicy: "የኩኪ ፖሊሲ",
     },
     hud: {
       hero: "መግቢያ",
@@ -309,6 +404,60 @@ export const translations: Record<Language, TranslationData> = {
       skill: "ክህሎቶች",
       work: "ስራዎች",
       contact: "ያግኙኝ",
+    },
+    cookieBanner: {
+      title: "የኩኪ እና የግላዊነት ምርጫዎች",
+      description:
+        "ይህ ድረ-ገጽ የመረጡትን ቋንቋ ለማስታወስ እና ምቹ የ3D ፖርትፎሊዮ ተሞክሮ ለመስጠት መሰረታዊ የብሮውዘር ስቶሬጅ ይጠቀማል። ምንም አይነት የማስታወቂያ ወይም የክትትል ኩኪዎችን አንጠቀምም።",
+      acceptAll: "ሁሉንም ተቀበል",
+      essentialOnly: "አስፈላጊውን ብቻ",
+      viewPolicy: "ተጨማሪ እወቅ",
+    },
+    cookiePolicy: {
+      badge: "ህጋዊ መረጃ እና ግልፅነት",
+      title: "የኩኪ ፖሊሲ",
+      subtitle:
+        "በዚህ ፖርትፎሊዮ ላይ ፈጣን እና የተስተካከለ አገልግሎት ለመስጠት የብሮውዘር ስቶሬጅ እና ኩኪዎች እንዴት ጥቅም ላይ እንደሚውሉ ይረዱ።",
+      lastUpdated: "የመጨረሻ ማሻሻያ፡ መስከረም 2026",
+      backToHome: "ወደ ፖርትፎሊዮ ተመለስ",
+      intro:
+        "ይህ የኩኪ ፖሊሲ ኩኪዎች እና የብሮውዘር ማከማቻ ቴክኖሎጂዎች ምን እንደሆኑ፣ በዚህ ድረ-ገጽ ላይ እንዴት ጥቅም ላይ እንደሚውሉ እና ምርጫዎችዎን እንዴት ማስተዳደር እንደሚችሉ ያብራራል።",
+      whatAreCookiesTitle: "1. ኩኪዎች እና ሎካል ስቶሬጅ ምንድን ናቸው?",
+      whatAreCookiesDesc:
+        "ኩኪዎች ድረ-ገጾችን በሚጎበኙበት ጊዜ በብሮውዘርዎ አማካኝነት በመሳሪያዎ ላይ የሚቀመጡ ጥቃቅን የጽሁፍ ፋይሎች ናቸው። በተጨማሪም ዘመናዊ ድረ-ገጾች መረጃዎችን ወደ ውጫዊ የማስታወቂያ አገልጋዮች ሳያስተላልፉ በብሮውዘርዎ ውስጥ ብቻ ለማስቀመጥ ሎካል ስቶሬጅ (Local Storage) ይጠቀማሉ።",
+      howWeUseTitle: "2. ይህ ድረ-ገጽ ስቶሬጅን እንዴት እንደሚጠቀም",
+      howWeUseDesc:
+        "የተጠቃሚዎችን ግላዊነት በጥብቅ እናከብራለን። ይህ ፖርትፎሊዮ የማስታወቂያ ኩኪዎችን፣ የተጠቃሚ መከታተያዎችን ወይም ሌሎች ጣልቃ-ገብ ቴክኖሎጂዎችን አይጠቀምም። የመረጡትን ቋንቋ (እንግሊዝኛ ወይም አማርኛ) ለማስታወስ እና የኩኪ ፍቃድ ምርጫዎን ለመያዝ ብቻ አስፈላጊውን የብሮውዘር ስቶሬጅ እንጠቀማለን።",
+      cookieTableTitle: "3. ጥቅም ላይ የዋሉ ቁልፎች እና ቴክኖሎጂዎች",
+      cookieTableHeaders: {
+        name: "የስቶሬጅ ቁልፍ / ኩኪ",
+        purpose: "የአጠቃቀም ዓላማ",
+        duration: "የሚቆይበት ጊዜ",
+        type: "አይነት",
+      },
+      cookieItems: [
+        {
+          name: "portfolio_lang",
+          purpose: "የመረጡትን ቋንቋ (እንግሊዝኛ ወይም አማርኛ) በገጾች መካከል እና በድጋሚ ሲጎበኙ ያስቀምጣል።",
+          duration: "ቋሚ (Local Storage)",
+          type: "እጅግ አስፈላጊ",
+        },
+        {
+          name: "cookie_consent",
+          purpose: "የኩኪ ምርጫዎን በማስታወስ ባነሩ ደጋግሞ እንዳይረብሽ ያደርጋል።",
+          duration: "ቋሚ (Local Storage)",
+          type: "እጅግ አስፈላጊ",
+        },
+      ],
+      thirdPartyTitle: "4. የሶስተኛ ወገን ሊንኮች እና አገልግሎቶች",
+      thirdPartyDesc:
+        "ይህ ፖርትፎሊዮ ወደ ማህበራዊ አውታሮች (GitHub, LinkedIn, Instagram, Facebook) የሚወስዱ ቀጥታ ሊንኮችን ይዟል። እነዚያን ሊንኮች ተጭነው ሲሄዱ የእነሱ የራሳቸው የሆነ የኩኪ እና የግላዊነት ፖሊሲ ተፈጻሚ ይሆናል።",
+      managingCookiesTitle: "5. ኩኪዎችን እንዴት ማስተዳደር እና ማጥፋት ይቻላል?",
+      managingCookiesDesc:
+        "በማንኛውም ጊዜ በብሮውዘርዎ ሴቲንግ (Chrome, Safari, Firefox, Edge ወዘተ) ውስጥ በመግባት የተቀመጡ ኩኪዎችን እና ስቶሬጅን ማጥፋት ወይም ማገድ ይችላሉ። ስቶሬጅን ሲያጠፉ የመረጡት ቋንቋ ወደ ነባሪው ሊመለስ ይችላል።",
+      contactTitle: "6. ጥያቄ ወይም አስተያየት አለዎት?",
+      contactDesc:
+        "ስለዚህ የኩኪ ፖሊሲ ወይም የግላዊነት ጥበቃ ማንኛውም ጥያቄ ካለዎት በኢሜይል አድራሻ yonaskassahunyoka@gmail.com ሊያገኙኝ ይችላሉ።",
     },
   },
 };
