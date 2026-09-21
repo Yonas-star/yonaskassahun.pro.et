@@ -3,6 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import WaveSpinner from "./WaveSpinner";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface LoaderProps {
   onComplete?: () => void;
@@ -10,6 +11,7 @@ interface LoaderProps {
 }
 
 export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
+  const { language } = useLanguage();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const lettersRef = useRef<(HTMLSpanElement | null)[]>([]);
   const waveCanvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -20,7 +22,7 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
   const [progress, setProgress] = useState(0);
   const [isFinished, setIsFinished] = useState(false);
 
-  const name = "Yonas Kassahun";
+  const name = language === "am" ? "ዮናስ ካሳሁን" : "Yonas Kassahun";
   const nameChars = name.split("");
 
   // 1. Kinetic Wave Animation on the Text Letters
@@ -65,7 +67,7 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
     return () => {
       cancelAnimationFrame(animId);
     };
-  }, []);
+  }, [name]);
 
   // 2. Horizontal Flowing Fluid Sine Wave Line
   useEffect(() => {
@@ -137,12 +139,20 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
   // 3. Counter & Progress Timeline
   useEffect(() => {
     const counterObj = { val: 0 };
-    const statusSteps = [
-      "CALIBRATING WAVE FREQUENCIES...",
-      "SYNCHRONIZING 3D ENVIRONMENT...",
-      "TUNING KINETIC MOTION...",
-      "PORTFOLIO READY",
-    ];
+    const statusSteps =
+      language === "am"
+        ? [
+            "የሞገድ ድግግሞሾችን በማስተካከል ላይ...",
+            "የ-3D አካባቢን በማመሳሰል ላይ...",
+            "እንቅስቃሴዎችን በማስተካከል ላይ...",
+            "ፖርትፎሊዮ ዝግጁ ነው",
+          ]
+        : [
+            "CALIBRATING WAVE FREQUENCIES...",
+            "SYNCHRONIZING 3D ENVIRONMENT...",
+            "TUNING KINETIC MOTION...",
+            "PORTFOLIO READY",
+          ];
 
     const tl = gsap.timeline({
       onComplete: () => {
@@ -186,7 +196,7 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
     return () => {
       tl.kill();
     };
-  }, [duration, onComplete]);
+  }, [duration, onComplete, language]);
 
   return (
     <div
@@ -243,7 +253,7 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
           ref={statusTextRef}
           className="text-[10px] sm:text-xs font-mono tracking-widest text-zinc-400 uppercase mt-1 sm:mt-2 h-4"
         >
-          TUNING WAVE HARMONICS...
+          {language === "am" ? "የሞገድ ድግግሞሾችን በማስተካከል ላይ..." : "TUNING WAVE HARMONICS..."}
         </p>
       </div>
 
@@ -259,7 +269,7 @@ export default function Loader({ onComplete, duration = 3.2 }: LoaderProps) {
 
         <div className="w-full flex justify-center text-[10px] sm:text-xs font-mono">
           <span className="font-bold tracking-wider text-zinc-200">
-            BUILD: 2026.09
+            {language === "am" ? "እትም: 2026.09" : "BUILD: 2026.09"}
           </span>
         </div>
       </div>

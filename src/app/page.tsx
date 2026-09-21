@@ -41,7 +41,7 @@ import {
 import { useLanguage } from "@/context/LanguageContext";
 
 export default function Home() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [showLoader, setShowLoader] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
@@ -189,7 +189,7 @@ export default function Home() {
     },
     {
       name: "LinkedIn",
-      handle: "Yonas Kassahun",
+      handle: language === "am" ? "ዮናስ ካሳሁን" : "Yonas Kassahun",
       url: "https://linkedin.com/in/yonas-kassahun",
       icon: Linkedin,
       color: "hover:text-blue-400 hover:border-blue-500/50",
@@ -203,7 +203,7 @@ export default function Home() {
     },
     {
       name: "Facebook",
-      handle: "Yonas Kassahun",
+      handle: language === "am" ? "ዮናስ ካሳሁን" : "Yonas Kassahun",
       url: "https://facebook.com/",
       icon: Facebook,
       color: "hover:text-blue-500 hover:border-blue-600/50",

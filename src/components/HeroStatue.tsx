@@ -25,12 +25,16 @@ import {
   OpenAIIcon,
   PyTorchIcon,
 } from "./TechIcons";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface HeroStatueProps {
   className?: string;
 }
 
 export default function HeroStatue({ className = "" }: HeroStatueProps) {
+  const { language } = useLanguage();
+  const firstName = language === "am" ? "ዮናስ" : "YONAS";
+  const lastName = language === "am" ? "ካሳሁን" : "KASSAHUN";
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   // Smooth mouse tilt parallax
@@ -200,24 +204,24 @@ export default function HeroStatue({ className = "" }: HeroStatueProps) {
           className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none z-10 overflow-visible px-4 -translate-y-2 sm:-translate-y-4"
         >
           <div className="flex flex-col items-center justify-center font-black tracking-tighter uppercase w-full gap-3 sm:gap-5 md:gap-7">
-            {/* YONAS */}
+            {/* First Name (YONAS / ዮናስ) */}
             <span
               className="text-[clamp(3rem,10vh+2vw,10.5rem)] font-black tracking-tighter bg-gradient-to-b from-white/35 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)] leading-none"
               style={{
                 WebkitTextStroke: "1px rgba(255, 255, 255, 0.22)",
               }}
             >
-              YONAS
+              {firstName}
             </span>
 
-            {/* KASSAHUN */}
+            {/* Last Name (KASSAHUN / ካሳሁን) */}
             <span
               className="text-[clamp(2.4rem,8vh+1.8vw,9rem)] font-black tracking-tighter bg-gradient-to-b from-white/30 via-zinc-400/20 to-zinc-600/5 bg-clip-text text-transparent drop-shadow-[0_12px_30px_rgba(0,0,0,0.8)] leading-none"
               style={{
                 WebkitTextStroke: "1px rgba(255, 255, 255, 0.18)",
               }}
             >
-              KASSAHUN
+              {lastName}
             </span>
           </div>
         </motion.div>

@@ -97,10 +97,10 @@ export default function Navbar({
           className="flex items-center gap-2.5 text-white font-bold tracking-tight hover:opacity-80 transition-opacity"
         >
           <div className="w-8 h-8 rounded-xl bg-white text-zinc-950 flex items-center justify-center font-mono text-sm font-black shadow-sm">
-            Y
+            {language === "am" ? "ዮ" : "Y"}
           </div>
           <span className="hidden sm:inline-block text-sm font-semibold tracking-wide text-zinc-200">
-            YONAS
+            {language === "am" ? "ዮናስ" : "YONAS"}
           </span>
         </a>
 
